@@ -8,5 +8,5 @@ Django:
   testing:
   dockering:
   drf + Swagger / OpenAPI:
+    https://www.django-rest-framework.org/
   gitlab ci:
-  
