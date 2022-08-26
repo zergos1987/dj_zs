@@ -22,6 +22,7 @@ Django:
   drf + Swagger / OpenAPI:
     
   drf + JWT:
+    https://github.com/syqu22/django-react-blog/blob/main/blog/settings.py
     https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358
     https://medium.com/netscape/full-stack-django-quick-start-with-jwt-auth-and-react-redux-part-i-37853685ab57
     https://github.com/SimpleJWT/drf-SimpleJWT-React
