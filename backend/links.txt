@@ -8,6 +8,7 @@ Python:
 Django:
   docs:
     https://www.djangoproject.com/
+    https://www.django-rest-framework.org/
   custom admin panel:
     https://github.com/sshwsfc/xadmin
   custom user model:
@@ -16,5 +17,5 @@ Django:
   testing:
   dockering:
   drf + Swagger / OpenAPI:
-    https://www.django-rest-framework.org/
+    https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358
   gitlab ci:
