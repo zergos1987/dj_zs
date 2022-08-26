@@ -1,7 +1,10 @@
 Random:
 https://github.com/Cambalab/metabase-compose
 https://github.com/anilkulkarni87/airflow-docker#superset
-
+Python:
+  packages:
+    https://pypi.org/simple/pyinstrument/
+    https://www.lfd.uci.edu/~gohlke/pythonlibs/#cryptography
 Django:
   docs:
     https://www.djangoproject.com/
