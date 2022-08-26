@@ -30,4 +30,5 @@ Django:
     https://github.com/keer2345/django-react-antdesign
     https://github.com/divanov11/React-Django-To-Do-App/blob/master/api/views.py
     https://github.com/dennismwagiru/django-react/tree/master/templates
+    https://github.com/c-v-ya/djact/tree/master/frontend
   gitlab ci:
