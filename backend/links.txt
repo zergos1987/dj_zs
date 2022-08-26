@@ -1,1 +1,12 @@
-
+Random:
+https://github.com/Cambalab/metabase-compose
+https://github.com/anilkulkarni87/airflow-docker#superset
+Django:
+  custom admin panel:
+    https://github.com/sshwsfc/xadmin
+  custom user model:
+  testing:
+  dockering:
+  drf + Swagger / OpenAPI:
+  gitlab ci:
+  
