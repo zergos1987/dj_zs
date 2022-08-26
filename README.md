@@ -1,2 +1,1 @@
-# django_api
-Django api
+dj_zs template
