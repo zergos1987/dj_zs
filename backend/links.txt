@@ -18,6 +18,7 @@ Django:
   testing:
   dockering:
     https://github.com/droxey/docker-django-react
+    https://github.com/doremifasollasi/Dockerizing_reactCRUD_djangoAPI
   drf + Swagger / OpenAPI:
     
   drf + JWT:
