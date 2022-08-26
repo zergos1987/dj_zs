@@ -11,6 +11,8 @@ Django:
   custom admin panel:
     https://github.com/sshwsfc/xadmin
   custom user model:
+    https://rohitlakhotia.com/blog/django-custom-user-model/
+    https://stackoverflow.com/questions/71532867/extended-fields-in-custom-django-user-model-not-appearing
   testing:
   dockering:
   drf + Swagger / OpenAPI:
