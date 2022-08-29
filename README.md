@@ -14,17 +14,21 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
 ## Installation
 
-1. First clone the repository to use it localy:
+1. Clone the repository to use it localy:
 
         git clone https://github.com/zergos1987/dj_zs.git
 
-    Then install all required libraries  through:
+2. Install backend requirements from:
 
         pip install -r backend/requirements.txt
+        
+3. Rename the cloned/downloaded folder `dj_zs.git` with your `title` and inside this folder write:
 
-2. Rename the `.env.example` to `.env`, then fill it with all the needed keys. `POSTGRES` is for the database access, `EMAIL` is for the email authentication and `SECRET_KEY` is the secret key for the application and etc.
+        django-admin startproject app
 
-3. Now you need to create a Postgre database with name `dj_zs` then do all the migrations using command:
+4. Rename the `.env.example` to `.env`, then fill it with all the needed keys. 
+
+5. Now you need to create a Postgre database and schema with name `dj_zs` and `app` then do all the migrations using command:
 
         py manage.py makemigrations
 
