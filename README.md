@@ -1,6 +1,6 @@
 # dj_zs
 
-Web application written using Javascript with React for Frontend, Python with Django for Backend and PostgreSQL as a default database.
+dj_zs - api template application written using Javascript with React for Frontend, Python with Django for Backend and PostgreSQL as a default database.
 
 ## Features
 
