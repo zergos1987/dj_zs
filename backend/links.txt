@@ -1,0 +1,35 @@
+Random:
+  https://github.com/Cambalab/metabase-compose
+  https://github.com/anilkulkarni87/airflow-docker#superset
+Python:
+  packages:
+    https://pypi.org/simple/pyinstrument/
+    https://www.lfd.uci.edu/~gohlke/pythonlibs/#cryptography
+Django:
+  docs:
+    https://www.djangoproject.com/
+    https://www.django-rest-framework.org/
+  custom admin panel:
+    https://github.com/sshwsfc/xadmin
+    https://github.com/mtianyan/django-react-tyadmin
+  custom user model:
+    https://rohitlakhotia.com/blog/django-custom-user-model/
+    https://stackoverflow.com/questions/71532867/extended-fields-in-custom-django-user-model-not-appearing
+  testing:
+  dockering:
+    https://github.com/droxey/docker-django-react
+    https://github.com/doremifasollasi/Dockerizing_reactCRUD_djangoAPI
+  drf + Swagger / OpenAPI:
+    https://github.com/F4R4N/shop-django-rest-framework
+  drf + JWT:
+    https://github.com/syqu22/django-react-blog
+    https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358
+    https://medium.com/netscape/full-stack-django-quick-start-with-jwt-auth-and-react-redux-part-i-37853685ab57
+    https://github.com/SimpleJWT/drf-SimpleJWT-React
+    https://github.com/ZaurZahid/react-django-jwt-login
+  drf + react:
+    https://github.com/keer2345/django-react-antdesign
+    https://github.com/divanov11/React-Django-To-Do-App/blob/master/api/views.py
+    https://github.com/dennismwagiru/django-react/tree/master/templates
+    https://github.com/c-v-ya/djact/tree/master/frontend
+  gitlab ci:

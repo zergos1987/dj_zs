@@ -1,0 +1,8 @@
+JS:
+  packages:
+    https://serverfault.com/questions/951315/npm-install-globally-a-package-offline-with-tarball
+    https://registry.npmjs.org/shebang-regex/
+    https://unpkg.com/browse/shebang-command@2.0.0/
+CSS:
+  shadows:
+    https://htmlcssfreebies.com/css-box-shadow-examples/
