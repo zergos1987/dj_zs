@@ -28,6 +28,7 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
 4. Rename the `.env.example` to `.env`, then fill it with all the needed keys. 
 
+
 5. Now you need to create a Postgres database and schema with name `dj_zs` and `app` then do all the migrations using command:
 
         py manage.py makemigrations
