@@ -1,9 +1,11 @@
 # Project
 app/
+node_modules
 
 # idle
 .idea/
 .DS_Store
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
