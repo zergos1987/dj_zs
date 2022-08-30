@@ -41,14 +41,9 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
         python3 manage.py migrate
 
-6. For the frontend you need to run these commands from the `/frontend` folder:
+6. Copy and replace folder from `backend/app` to `project folder/app`:
 
-        npm install
-
-    to download all the needed NPM packages and then to start the frontend Dev server:
-
-        npm run dev
 
 7. Finally you can start the frontend server from base project folder by running:
 
-        py manage.py runserver
+        python3 manage.py runserver
