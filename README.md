@@ -33,7 +33,8 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
         python3 manage.py flush --no-input
 
-    and:        
+    and:
+
         python3 manage.py makemigrations
 
     and:
