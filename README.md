@@ -31,6 +31,9 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
 5. Now you need to create a Postgres database and schema with name `dj_zs` and `app` then do all the migrations using command:
 
+        python3 manage.py flush --no-input
+
+    and:        
         python3 manage.py makemigrations
 
     and:
