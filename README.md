@@ -18,7 +18,7 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
         git clone https://github.com/zergos1987/dj_zs.git
 
-2. Rename the cloned/downloaded folder `dj_zs.git` with your project folder `title` and Install backend requirements from:
+2. Rename the cloned/downloaded folder `dj_zs.git` with your project folder `title` and in project folder install backend requirements:
 
         python3 -m venv venv && source venv/bin/activate && pip install -r backend/requirements.txt
         
