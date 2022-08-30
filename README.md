@@ -18,11 +18,11 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
         git clone https://github.com/zergos1987/dj_zs.git
 
-2. Install backend requirements from:
+2. Rename the cloned/downloaded folder `dj_zs.git` with your project folder `title` and Install backend requirements from:
 
-        pip install -r backend/requirements.txt
+        python3 -m venv venv && source venv/bin/activate && pip install -r backend/requirements.txt
         
-3. Rename the cloned/downloaded folder `dj_zs.git` with your `title` and inside this folder write:
+3. In project folder write command:
 
         django-admin startproject app
 
@@ -31,11 +31,11 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
 5. Now you need to create a Postgres database and schema with name `dj_zs` and `app` then do all the migrations using command:
 
-        py manage.py makemigrations
+        python3 manage.py makemigrations
 
     and:
 
-        py manage.py migrate
+        python3 manage.py migrate
 
 6. For the frontend you need to run these commands from the `/frontend` folder:
 
