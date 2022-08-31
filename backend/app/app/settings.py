@@ -153,11 +153,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ##################### SETTINGS PLUGINS CONFIG BELOW #####################
 #########################################################################
 """
+    django_import_export
+"""
+from settings import django_import_export as dix_conf
+INSTALLED_APPS += dix_conf.INSTALLED_APPS
+
+"""
     django_rest_framework
 """
 if config('APP_USE_PLUGIN_DRF', default=False, cast=bool):
     from settings import django_rest_framework as drf_conf
     INSTALLED_APPS += drf_conf.INSTALLED_APPS
     REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
-print(DATABASES)
+print(INSTALLED_APPS)
 

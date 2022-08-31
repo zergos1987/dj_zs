@@ -1,4 +1,7 @@
 from django.contrib import admin
+from import_export import resources
+from rangefilter.filters import DateRangeFilter, DateTimeRangeFilter
+from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 from .models import (
         app_settings,
 	)
@@ -12,7 +15,7 @@ class Resource_app_settings(resources.ModelResource):
         model = app_settings
         skip_unchanged = True
         report_skipped = False
-        #fields = ('',)
+        fields = ('id', 'user', 'json_data', 'created_at_datetime', 'updated_at_datetime', 'user__username')
         #exclude = ('',)
 
 
