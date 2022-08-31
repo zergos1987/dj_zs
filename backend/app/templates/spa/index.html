@@ -17,7 +17,7 @@
 
 {% block app %}
     {{ block.super }}
-    <div id="app" app-settings=""></div>
+    <div id="app" app_settings="{% if user_settings %}{{user_settings|safe}}{% else %}{}{% endif %}"></div>
 {% endblock app %}
 
 {% block footer %}{{ block.super }}{% endblock footer %}
