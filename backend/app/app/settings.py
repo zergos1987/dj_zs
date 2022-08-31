@@ -93,7 +93,7 @@ if DEBUG:
     }
 else:
     DATABASES = {
-        'default': dj_database_url.parse(config('APP_DB_CONNECTION_SETTINGS')),
+        'default': dj_database_url.parse(config('APP_DB')),
         'test': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'test_production_db.sqlite3',
