@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+<!-- APP CSS -->
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'spa/assets/css/index.css' %}" rel="stylesheet">
+{% endblock css %}
+<!-- APP VENDOR CSS -->
+{% block vendor_css %}
+    {{ block.super }}
+{% endblock vendor_css %}
+
+{% block app %}
+    {{ block.super }}
+    <div id="app">
+
+    </div>
+{% endblock app %}
+
+<!-- APP JS -->
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'spa/assets/js/index.js'%}"></script>
+    {% endblock js %}
+<!-- APP VENDOR JS -->
+{% block vendor_js %}
+    {{ block.super }}
+{% endblock vendor_js %}
