@@ -12,12 +12,15 @@
     {{ block.super }}
 {% endblock vendor_css %}
 
+<!--APP BODY-->
+{% block header %}{{ block.super }}{% endblock header %}
+
 {% block app %}
     {{ block.super }}
-    <div id="app">
-
-    </div>
+    <div id="app" app-settings=""></div>
 {% endblock app %}
+
+{% block footer %}{{ block.super }}{% endblock footer %}
 
 <!-- APP JS -->
 {% block js %}
