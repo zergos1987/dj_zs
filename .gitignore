@@ -1,6 +1,7 @@
 # Project
 app
 !backend/app
+!backend/app/app
 node_modules
 
 # idle
