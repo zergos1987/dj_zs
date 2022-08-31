@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', lambda request: redirect('api/test/', permanent=True)),
-    path('api/', include('api.urls'))
+    path('', lambda request: redirect('api/', permanent=True)),
+    path('api/', include('api.urls')),
+    path('spa/', include('spa.urls'))
 ]

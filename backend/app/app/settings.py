@@ -78,16 +78,26 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+DATABASE_ROUTERS = ['app.settings.db_routers.Router']
+
 if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'development_db.sqlite3',
+        },
+        'test': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'test_development_db.sqlite3',
         }
     }
 else:
     DATABASES = {
         'default': dj_database_url.parse(config('APP_DB_CONNECTION_SETTINGS')),
+        'test': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'test_production_db.sqlite3',
+        }
     }
 
 
@@ -142,11 +152,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #########################################################################
 ##################### SETTINGS PLUGINS CONFIG BELOW #####################
 #########################################################################
-
+"""
+    django_rest_framework
+"""
 if config('APP_USE_PLUGIN_DRF', default=False, cast=bool):
-    """
-        django_rest_framework
-    """
     from settings import django_rest_framework as drf_conf
     INSTALLED_APPS += drf_conf.INSTALLED_APPS
     REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
