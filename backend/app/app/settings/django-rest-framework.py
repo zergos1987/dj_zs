@@ -1,3 +1,11 @@
+# SETTINGS for Django-rest-framework
+# import sys
+# from os.path import dirname
+# sys.path.append(dirname(dirname(__file__)))
+# print(dirname(dirname(__file__)))
+# from settings import settings
+# INSTALLED_APPS = []
+# print('ZZZZZZZZZZZZ', settings.INSTALLED_APPS)
 """
 Throttling is similar to permissions, in that it determines if a request should be authorized.
 Throttles indicate a temporary state, and are used to control the rate of requests that clients can make to an API.

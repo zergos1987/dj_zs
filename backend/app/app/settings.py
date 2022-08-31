@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('APP_SECRET_KEY', default='django-insecure-j1rs(!$7)ou-uf45*cqe9!ds9pemx!w0omj&zs4vqz^kh$qcyt')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('APP_DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+# ; - separator of hosts in list
+ALLOWED_HOSTS = [i for i in config('ALLOWED_HOSTS').split(";") if i != '']
 
 
 # Application definition
@@ -38,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
+    'spa',
 ]
 
 MIDDLEWARE = [
