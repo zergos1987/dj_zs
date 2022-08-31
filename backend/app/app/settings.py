@@ -153,11 +153,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ##################### SETTINGS PLUGINS CONFIG BELOW #####################
 #########################################################################
 """
+    django_sslserver
+"""
+INSTALLED_APPS += ['sslserver']
+"""
+    django_filters
+"""
+INSTALLED_APPS += ['django_filters']
+"""
+    django_csp
+"""
+INSTALLED_APPS += ['csp']
+MIDDLEWARE += ['csp.middleware.CSPMiddleware']
+"""
+    django_admin_rangefilter
+"""
+INSTALLED_APPS += ['rangefilter']
+"""
     django_import_export
 """
 from settings import django_import_export as dix_conf
 INSTALLED_APPS += dix_conf.INSTALLED_APPS
-
+IMPORT_EXPORT_USE_TRANSACTIONS = dix_conf.IMPORT_EXPORT_USE_TRANSACTIONS
 """
     django_rest_framework
 """

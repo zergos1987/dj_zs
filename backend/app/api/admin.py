@@ -28,8 +28,8 @@ class ModelAdmin_app_settings(ImportExportModelAdmin):
     search_fields = ('user__username',)
 
     list_filter = (
-        ('created_at_datetime', DateRangeFilter),
-        ('updated_at_datetime', DateRangeFilter),
+        ('created_at_datetime', DateTimeRangeFilter),
+        ('updated_at_datetime', DateTimeRangeFilter),
     )
 
     def save_model(self, request, obj, form, change):
