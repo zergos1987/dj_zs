@@ -79,27 +79,31 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASE_ROUTERS = ['app.settings.db_routers.Router']
+DATABASES = {}
 
 if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'development_db.sqlite3',
-        },
-        'test': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'test_development_db.sqlite3',
-        }
-    }
+    DATABASES['default'] = dj_database_url.config(default=f'sqlite:///{BASE_DIR}/' + 'development_db.sqlite3')
+    DATABASES['test'] = dj_database_url.config(default=f'sqlite:///{BASE_DIR}/' + 'test_development_db.sqlite3')
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'development_db.sqlite3',
+    #     },
+    #     'test': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'test_development_db.sqlite3',
+    #     }
+    # }
 else:
-    DATABASES = {
-        'default': dj_database_url.parse(config('APP_DB')),
-        'test': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'test_production_db.sqlite3',
-        }
-    }
-
+    DATABASES['default'] = dj_database_url.parse(default=config('APP_DB'))
+    DATABASES['test'] = dj_database_url.config(default=f'sqlite:///{BASE_DIR}/' + 'test_production_db.sqlite3')
+    # DATABASES = {
+    #     'default': dj_database_url.parse(config('APP_DB')),
+    #     'test': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'test_production_db.sqlite3',
+    #     }
+    #}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -183,4 +187,5 @@ INSTALLED_APPS += drf_conf.INSTALLED_APPS
 REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
 if config('APP_USE_PLUGIN_DRF_JWT', default=False, cast=bool):
     pass
-# print(INSTALLED_APPS)
+print(DATABASES)
+

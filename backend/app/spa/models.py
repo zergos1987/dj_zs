@@ -17,7 +17,7 @@ default_for_app_settings= {
 
 class app_settings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="spa_app_settings")
-    json_data = JSONField(null=True, blank=True, default=default_for_app_settings)
+    json_data = models.JSONField(null=True, blank=True, default=dict)
     created_at_datetime = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at_datetime = models.DateTimeField(auto_now=True, blank=False)
 
@@ -26,7 +26,12 @@ class app_settings(models.Model):
         app_label = 'spa'
         ordering = ('-created_at_datetime',)
 
+    def clean(self, *args, **kwargs):
+        if self.json_data is None:
+            self.json_data = default_for_app_settings
+
     def save(self, *args, **kwargs):
+        self.clean()
         if self.user and self.json_data.get("app_user").get("username") == 'anonymous':
             self.json_data["app_user"]["username"] = self.user.username
         super(app, self).save(*args, **kwargs)
