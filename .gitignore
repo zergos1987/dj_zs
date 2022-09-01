@@ -1,5 +1,6 @@
 # Project
 app
+app.zip
 !backend/app
 !backend/app/app
 node_modules
