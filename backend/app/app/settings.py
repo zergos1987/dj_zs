@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from decouple import config
 import dj_database_url
+import os
+import shutil
+import sqlite3
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,26 +87,17 @@ DATABASES = {}
 if DEBUG:
     DATABASES['default'] = dj_database_url.config(default=f'sqlite:///{BASE_DIR}/' + 'development_db.sqlite3')
     DATABASES['test'] = dj_database_url.config(default=f'sqlite:///{BASE_DIR}/' + 'test_development_db.sqlite3')
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': BASE_DIR / 'development_db.sqlite3',
-    #     },
-    #     'test': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': BASE_DIR / 'test_development_db.sqlite3',
-    #     }
-    # }
+    if not os.path.exists(f'{BASE_DIR}/test_development_db.sqlite3'):
+        conn = None
+        conn = sqlite3.connect(f'{BASE_DIR}/test_development_db.sqlite3')
+        conn.close()
 else:
     DATABASES['default'] = dj_database_url.parse(default=config('APP_DB'))
     DATABASES['test'] = dj_database_url.config(default=f'sqlite:///{BASE_DIR}/' + 'test_production_db.sqlite3')
-    # DATABASES = {
-    #     'default': dj_database_url.parse(config('APP_DB')),
-    #     'test': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': BASE_DIR / 'test_production_db.sqlite3',
-    #     }
-    #}
+    if not os.path.exists(f'{BASE_DIR}/test_production_db.sqlite3'):
+        conn = None
+        conn = sqlite3.connect(f'{BASE_DIR}/test_production_db.sqlite3')
+        conn.close()
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
