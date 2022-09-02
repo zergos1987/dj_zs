@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASE_ROUTERS = ['app.settings.db_routers.Router']
+DATABASE_ROUTERS = ['settings.db_routers.Router']
 DATABASES = {}
 
 if DEBUG:
