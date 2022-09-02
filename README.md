@@ -32,20 +32,20 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
 7. Now you need to create a Postgres database and schema with name `dj_zs` and `app` then do all the migrations using command:
 
-        python3 manage.py flush --no-input
+        python3 app/manage.py flush --no-input
 
     and:
 
-        python3 manage.py makemigrations
+        python3 app/manage.py makemigrations
 
     and:
 
-        python3 manage.py migrate
+        python3 app/manage.py migrate
 
     and:
 
-        python3 manage.py collectstatic --no-input --clear
+        python3 app/manage.py collectstatic --no-input --clear
 
 8. Finally you can start the frontend server from base project folder by running:
 
-        python3 manage.py runserver
+        python3 app/manage.py runserver
