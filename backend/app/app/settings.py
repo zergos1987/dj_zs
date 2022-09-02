@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASE_ROUTERS = ['settings.db_routers.Router']
+DATABASE_ROUTERS = ['extra_settings.db_routers.Router']
 DATABASES = {}
 
 if DEBUG:
@@ -176,13 +176,13 @@ INSTALLED_APPS += ['rangefilter']
 """
     django_import_export
 """
-from settings import django_import_export as dix_conf
+from extra_settings import django_import_export as dix_conf
 INSTALLED_APPS += dix_conf.INSTALLED_APPS
 IMPORT_EXPORT_USE_TRANSACTIONS = dix_conf.IMPORT_EXPORT_USE_TRANSACTIONS
 """
     django_rest_framework
 """
-from settings import django_rest_framework as drf_conf
+from extra_settings import django_rest_framework as drf_conf
 INSTALLED_APPS += drf_conf.INSTALLED_APPS
 REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
 if config('APP_USE_PLUGIN_DRF_JWT', default=False, cast=bool):
