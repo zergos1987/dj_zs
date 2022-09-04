@@ -6,6 +6,8 @@ from api.models import app_settings
 # Create your views here.
 
 def index(request):
+    if not app_settings.objects.first():
+        app_settings.objects.create()
     return HttpResponse(200)
 
     if request.user.is_authenticated:

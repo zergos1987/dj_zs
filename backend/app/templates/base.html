@@ -20,22 +20,22 @@
     <body>
     <!--APP BODY-->
     {% block header %}
-        {% include "base_parts/v1.0/header.html" with data=[{col: 'test'}] %}
+        {% include "base_parts/v1.0/header.html" with data='[{col: "test"}]' %}
     {% endblock header %}
 
     {% block aside_l %}
-        {% include "base_parts/v1.0/aside_l.html" with data=[{col: 'test'}] %}
+        {% include "base_parts/v1.0/aside_l.html" with data='[{col: "test"}]' %}
     {% endblock aside_l %}
 
     {% block aside_r %}
-        {% include "base_parts/v1.0/aside_r.html" with data=[{col: 'test'}] %}
+        {% include "base_parts/v1.0/aside_r.html" with data='[{col: "test"}]' %}
     {% endblock aside_r %}
 
     {% block app %}
     {% endblock app %}
 
     {% block footer %}
-        {% include "base_parts/v1.0/footer.html" with data=[{col: 'test'}] %}
+        {% include "base_parts/v1.0/footer.html" with data='[{col: "test"}]' %}
     {% endblock footer %}
     </body>
     <!-- APP JS -->
