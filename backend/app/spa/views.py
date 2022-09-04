@@ -6,7 +6,7 @@ from spa.models import app_settings
 # Create your views here.
 
 def index(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         user_settings = app_settings.objects.filter(user=request.user).first()
     else:
         user_settings = app_settings.objects.filter(user__isnull=True).first()

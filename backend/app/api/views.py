@@ -8,7 +8,7 @@ from api.models import app_settings
 def index(request):
     return HttpResponse(200)
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         user_settings = app_settings.objects.filter(user=request.user).first()
     else:
         user_settings = app_settings.objects.filter(user__isnull=True).first()
