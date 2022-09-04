@@ -34,7 +34,7 @@ class app_settings(models.Model):
         self.clean()
         if self.user and self.json_data.get("app_user").get("username") == 'anonymous':
             self.json_data["app_user"]["username"] = self.user.username
-        super(app, self).save(*args, **kwargs)
+        super(app_settings, self).save(*args, **kwargs)
 
     def __str__(self):
         created_at_datetime = self.created_at_datetime
