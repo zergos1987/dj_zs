@@ -7,7 +7,8 @@ from spa.models import app_settings
 
 def index(request):
     if not app_settings.objects.first():
-        app_settings.objects.create()
+        record = app_settings.objects.create()
+        record.save()
 
     if request.user.is_authenticated:
         user_settings = app_settings.objects.filter(user=request.user).first()
