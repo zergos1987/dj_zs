@@ -25,9 +25,11 @@
     {% endblock header %}
 
     {% block aside_l %}
+        {% include "base_parts/v1.0/aside_l.html" with data='[{col: "test"}]' %}
     {% endblock aside_l %}
 
     {% block aside_r %}
+        {% include "base_parts/v1.0/aside_r.html" with data='[{col: "test"}]' %}
     {% endblock aside_r %}
 
     {% block app %}
