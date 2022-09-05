@@ -3,16 +3,13 @@ from django.contrib.auth.models import User, Group
 
 
 # Create your models here.
-app_data_v1 = {
-    "version": 1
-}
-
 default_for_app_settings = {
     "app_name": "spa",
+    "app_version": 1.0,
     "app_user": {
             "username": "anonymous"
     },
-    "app_data": app_data_v1
+    "app_data": {}
 }
 
 class app_settings(models.Model):
