@@ -25,6 +25,7 @@ class app_settings(models.Model):
     class Meta:
         # app_label helps django to recognize your db
         app_label = 'spa'
+        unique_together = ('user', 'json_data', 'use_json_data_version')
         ordering = ('-created_at_datetime',)
 
     def save(self, *args, **kwargs):
