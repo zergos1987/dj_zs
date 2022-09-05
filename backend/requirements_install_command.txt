@@ -1,0 +1,2 @@
+# Windows install
+pip install backend\requirements\virtualenv-20.16.4-py3-none-any.whl --no-index --find-links file:///../backend/requirements & python -m venv venv & venv\scripts\activate & pip install -r backend/requirements.txt --no-index --find-links file:///../backend/requirements && django-admin startproject app
