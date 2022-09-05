@@ -7,7 +7,7 @@ app_data_v1 = {
     "version": 1
 }
 
-default_for_app_settings= {
+default_for_app_settings = {
     "app_name": "spa",
     "app_user": {
             "username": "anonymous"
