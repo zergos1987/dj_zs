@@ -22,7 +22,6 @@ def index(request):
 
     context = {
         'app_settings': user_settings.json_data,
-        'data': {'col': 'test'},
     }
     template = 'spa/index.html'
 
