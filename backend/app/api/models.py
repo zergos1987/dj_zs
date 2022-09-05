@@ -29,8 +29,8 @@ class app_settings(models.Model):
         
     def save(self, *args, **kwargs):
         if not self.json_data: self.json_data = default_for_app_settings
-        if self.user and self.json_data.get("app_user").get("username") == 'anonymous':
-            self.json_data["app_user"]["username"] = self.user.username
+        if self.user and self.json_data.get("user").get("username") == 'anonymous':
+            self.json_data["user"]["username"] = self.user.username
         super(app_settings, self).save(*args, **kwargs)
 
     def __str__(self):
