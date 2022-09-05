@@ -9,7 +9,6 @@ def index(request):
     if not app_settings.objects.first():
         record = app_settings.objects.create()
         record.save()
-    return HttpResponse(200)
 
     if request.user.is_authenticated:
         user_settings = app_settings.objects.filter(user=request.user).first()
@@ -23,7 +22,6 @@ def index(request):
 
     context = {
         'app_settings': user_settings.json_data,
-        'data': {'col': 'test'},
     }
     template = 'spa/index.html'
 
