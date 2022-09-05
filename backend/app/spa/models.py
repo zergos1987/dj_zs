@@ -26,12 +26,8 @@ class app_settings(models.Model):
         app_label = 'spa'
         ordering = ('-created_at_datetime',)
 
-    def clean(self, *args, **kwargs):
-        if self.json_data is None:
-            self.json_data = default_for_app_settings
-
     def save(self, *args, **kwargs):
-        self.clean()
+        if not self.json_data: self.json_data = default_for_app_settings
         if self.user and self.json_data.get("app_user").get("username") == 'anonymous':
             self.json_data["app_user"]["username"] = self.user.username
         super(app_settings, self).save(*args, **kwargs)
