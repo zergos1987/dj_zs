@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Create your models here.
@@ -15,6 +16,7 @@ default_for_app_settings = {
 class app_settings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="api_app_settings")
     json_data = models.JSONField(null=True, blank=True, default=dict)
+    use_json_data_version = models.FloatField(null=False, blank=False, default=1.0, validators=[MinValueValidator(1.0), MaxValueValidator(99.99)])
     created_at_datetime = models.DateTimeField(auto_now_add=True, blank=False)
     updated_at_datetime = models.DateTimeField(auto_now=True, blank=False)
 
