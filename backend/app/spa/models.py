@@ -5,12 +5,14 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 default_for_app_settings = {
-    "app_name": "spa",
-    "app_version": 1.0,
-    "app_user": {
+    "app": {
+        "version": 1.0,
+        "name": "api"
+    },
+    "user": {
             "username": "anonymous"
     },
-    "app_data": {}
+    "data": {}
 }
 
 class app_settings(models.Model):
