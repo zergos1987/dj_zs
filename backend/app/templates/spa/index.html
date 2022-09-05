@@ -15,7 +15,7 @@
 <!--APP BODY-->
 {% block app %}
     {{ block.super }}
-    <div id="app" app_settings="{% if user_settings %}{{user_settings|safe}}{% else %}{}{% endif %}"></div>
+    <div id="app" app_settings="{% if app_settings %}{{app_settings|safe}}{% else %}{}{% endif %}"></div>
 {% endblock app %}
 
 <!-- APP JS -->
