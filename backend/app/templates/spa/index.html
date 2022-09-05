@@ -13,10 +13,18 @@
 {% endblock vendor_css %}
 
 <!--APP BODY-->
+{% block header %}{% endblock header %}
+
+{% block aside_l %}{% endblock aside_l %}
+
+{% block aside_r %}{% endblock aside_r %}
+
 {% block app %}
     {{ block.super }}
-    <div id="app" app_settings="{% if app_settings %}{{app_settings|safe}}{% else %}{}{% endif %}"></div>
+    <div id="app" app_settings="{% if app_settings %}{{app_settings|safe}}{% else %}{}{% endif %}">app</div>
 {% endblock app %}
+
+{% block footer %}{% endblock footer %}
 
 <!-- APP JS -->
 {% block js %}
