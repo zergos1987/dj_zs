@@ -176,7 +176,7 @@ if not DEBUG:
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/spa/login/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/spa/login/'
     
 
 # Default primary key field type
