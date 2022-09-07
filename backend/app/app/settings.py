@@ -173,6 +173,10 @@ FIXTURE_DIRS = (
 
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/spa/login/'
+LOGOUT_REDIRECT_URL = '/'
     
 
 # Default primary key field type
