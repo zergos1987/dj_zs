@@ -3,6 +3,7 @@ Random:
   https://github.com/anilkulkarni87/airflow-docker#superset
   https://mlocati.github.io/articles/gettext-iconv-windows.html
   https://stackoverflow.com/questions/72842060/how-to-make-react-i18next-accessing-json-file-in-django
+  https://github.com/st4lk/django-solid-i18n-urls
 Python:
   packages:
     https://pypi.org/simple/pyinstrument/
