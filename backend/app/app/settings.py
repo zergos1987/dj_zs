@@ -161,6 +161,9 @@ DATE_FORMAT = '%Y-%m-%d'
 TIME_INPUT_FORMATS = '%H:%M:%S'
 DATETIME_FORMAT = DATE_FORMAT + 'T' + TIME_INPUT_FORMATS
 
+DATE_INPUT_FORMATS = ('%Y-%m-%d', '%d/%m/%Y')
+DATETIME_INPUT_FORMATS = ('%Y-%m-%d %H:%M:%S', '%d/%m/%Y %H:%M:%S')
+
 FIXTURE_DIRS = (
     BASE_DIR / 'fixtures',
 )
