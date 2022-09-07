@@ -120,21 +120,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# Internationalization & Localization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-RU'
-
-FILE_CHARSET = 'utf-8-sig'
-
-TIME_ZONE = 'Europe/Moscow'
+LANGUAGE_CODE = 'ru'
 
 USE_I18N = True
 
-USE_TZ = True
-
-
-# Localization
+USE_L10N = True
 
 LANGUAGES = [
     ('ru', _('Russian')),
@@ -142,8 +135,15 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = (
-    BASE_DIR / 'locale',
+    BASE_DIR / 'translations/locale',
 )
+
+FILE_CHARSET = 'utf-8-sig'
+
+
+# Time zones
+TIME_ZONE = 'Europe/Moscow'
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
