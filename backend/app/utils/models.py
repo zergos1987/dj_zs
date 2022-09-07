@@ -1,12 +1,13 @@
 import os
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
+from django.utils.translation import ngettext
 
 
 def validator_file_size(value): # add this to some file where you can import it from
     megabytes = 2
     limit = megabytes * 1024 * 1024
-    err_msg = _('File too large. Size should not exceed {megabytes} MB.'.format(megabytes=megabytes))
+    err_msg = ngettext('File too large. Size should not exceed %(megabytes)d MB.') % { 'megabytes': megabytes, }
     if value.size > limit:
         raise ValidationError(err_msg)
 
