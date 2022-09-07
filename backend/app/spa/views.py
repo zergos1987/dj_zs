@@ -5,7 +5,7 @@ from spa.models import app_settings
 
 # Create your views here.
 
-def index(request):
+def index(request, *args, **kwargs):
     if not app_settings.objects.first():
         record = app_settings.objects.create()
         record.save()
