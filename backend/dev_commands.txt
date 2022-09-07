@@ -1,8 +1,15 @@
-# Windows Mac
-
 # Windows install
 pip install backend\requirements\virtualenv-20.16.4-py3-none-any.whl --no-index --find-links file:///../backend/requirements & python -m venv venv & venv\scripts\activate & pip install -r backend/requirements.txt --no-index --find-links file:///../backend/requirements && django-admin startproject app && cd app && django-admin startapp spa && django-admin startapp api && cd .. && xcopy "backend/app" "app" /c /i /e /h /y && if not exist .env copy .env.example .env && python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@dj_zs.com', 'test1234567')" && python app/manage.py collectstatic --no-input
 
+# Windows CI/CD
+
+# Mac install
+
 # Mac CI/CD
 
-# Windows CI/CD
+# Other
+python app/manage.py dumpdata --format=json api > app/fixtures/api_models.json
+python app/manage.py dumpdata --format=json spa > app/fixtures/api_models.json
+
+python app/manage.py loaddata fixtures/api_models.json --app api.app_settings
+python app/manage.py loaddata fixtures/spa_models.json --app spa.app_settings
