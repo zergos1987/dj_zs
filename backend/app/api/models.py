@@ -68,7 +68,7 @@ class user_extra_data(models.Model):
         ('F', _('Female')),
     )
     LANGUAGES = (
-        ('ru', _('Russia')),
+        ('ru', _('Russian')),
         ('en', _('English')),
     )
 
