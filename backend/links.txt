@@ -2,6 +2,7 @@ Random:
   https://github.com/Cambalab/metabase-compose
   https://github.com/anilkulkarni87/airflow-docker#superset
   https://mlocati.github.io/articles/gettext-iconv-windows.html
+  https://stackoverflow.com/questions/72842060/how-to-make-react-i18next-accessing-json-file-in-django
 Python:
   packages:
     https://pypi.org/simple/pyinstrument/
