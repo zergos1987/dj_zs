@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -132,8 +133,17 @@ USE_I18N = True
 USE_TZ = True
 
 
+# Localization
+
+LOCALE_PATHS = (
+    BASE_DIR / 'locale',
+)
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -144,6 +154,16 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / "static/assets",
 ]
+
+
+# Other
+DATE_FORMAT = '%Y-%m-%d'
+TIME_INPUT_FORMATS = '%H:%M:%S'
+DATETIME_FORMAT = DATE_FORMAT + 'T' + TIME_INPUT_FORMATS
+
+FIXTURE_DIRS = (
+    BASE_DIR / 'fixtures',
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
