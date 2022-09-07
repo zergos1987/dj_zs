@@ -171,6 +171,10 @@ FIXTURE_DIRS = (
     BASE_DIR / 'fixtures',
 )
 
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
