@@ -27,14 +27,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-if not config('APP_SECRET_KEY') and config('APP_DEBUG', default=False, cast=bool):
-    warnings.warn("SECRET_KEY not configured, using a random temporary key.")
-    
-SECRET_KEY = config('APP_SECRET_KEY', default=get_random_secret_key())
+SECRET_KEY = config('APP_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('APP_DEBUG', default=False, cast=bool)
+
+# SECURITY WARNING: keep the secret key used in production secret!
+if not SECRET_KEY and DEBUG:
+    warnings.warn("SECRET_KEY not configured, using a random temporary key.")
+    SECRET_KEY = config('APP_SECRET_KEY', default=get_random_secret_key())
 
 # ; - separator of hosts in list
 ALLOWED_HOSTS = [i for i in config('APP_ALLOWED_HOSTS').split(";") if i != '']
