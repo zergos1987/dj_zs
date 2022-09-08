@@ -14,9 +14,11 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 import os
+import warnings
 import shutil
 import sqlite3
 from django.utils.translation import gettext_lazy as _
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('APP_SECRET_KEY', default='django-insecure-j1rs(!$7)ou-uf45*cqe9!ds9pemx!w0omj&zs4vqz^kh$qcyt')
+if not config('APP_SECRET_KEY') and config('APP_DEBUG', default=False, cast=bool):
+    warnings.warn("SECRET_KEY not configured, using a random temporary key.")
+    
+SECRET_KEY = config('APP_SECRET_KEY', default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('APP_DEBUG', default=False, cast=bool)
