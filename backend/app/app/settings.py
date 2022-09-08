@@ -40,7 +40,7 @@ if not SECRET_KEY and DEBUG:
 # ; - separator of hosts in list
 ALLOWED_HOSTS = [i for i in config('APP_ALLOWED_HOSTS').split(";") if i != '']
 
-INTERNAL_IPS = []
+INTERNAL_IPS = ["127.0.0.1"]
 
 
 # Application definition
@@ -228,9 +228,6 @@ ENABLE_DEBUG_TOOLBAR = config('ENABLE_DEBUG_TOOLBAR', default=False, cast=bool)
 if ENABLE_DEBUG_TOOLBAR:
     INSTALLED_APPS += ["debug_toolbar"]
     MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
-    INTERNAL_IPS += [
-        "127.0.0.1",
-    ]
 
     DEBUG_TOOLBAR_PANELS = [
         "debug_toolbar.panels.timer.TimerPanel",
