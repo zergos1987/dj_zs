@@ -4,6 +4,7 @@ Random:
   https://mlocati.github.io/articles/gettext-iconv-windows.html
   https://stackoverflow.com/questions/72842060/how-to-make-react-i18next-accessing-json-file-in-django
   https://github.com/st4lk/django-solid-i18n-urls
+  https://github.com/saleor/saleor/blob/main/saleor/settings.py
 Python:
   packages:
     https://pypi.org/simple/pyinstrument/
