@@ -83,7 +83,7 @@ class user_extra_data(models.Model):
     age = models.IntegerField(blank=True, null=True, default=1, validators=[MinValueValidator(1), MaxValueValidator(150)], verbose_name=_('Age'))
     birthday = models.DateField(blank=True, null=True, verbose_name=_('Birthday'))
     preferred_language = models.CharField(blank=True, null=True, choices=LANGUAGES, max_length=3, default='ENG')
-    phone_number = PhoneNumberField(blank=True, null=True, verbose_name=_('Phone Number'))
+    phone_number = PhoneNumberField(blank=True, null=True, unique=True, verbose_name=_('Phone Number'))
     avatar = models.ImageField(blank=True, null=True, default='default_avatar.jpg', upload_to='user_extra_data_avatars', verbose_name=_('Avatar'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True, verbose_name=_('Record created at'))
     updated_at_datetime = models.DateTimeField(blank=True, null=True, auto_now=True, verbose_name=_('Record updated at'))
