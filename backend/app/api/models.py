@@ -1,11 +1,9 @@
 from django.db import models
-import os
 from datetime import date
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator, FileExtensionValidator
-from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from utils.models import validator_file_size, validator_file_extension
