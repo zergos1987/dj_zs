@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 
-favicon_view = RedirectView.as_view(url='/static/base/assets/images/favicon.ico', permanent=True)
+favicon_view = RedirectView.as_view(url='/static/assets/images/favicon.ico', permanent=True)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
