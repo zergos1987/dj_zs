@@ -222,6 +222,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ##################### EXTRA SETTINGS CONFIG BELOW #######################
 #########################################################################
 """
+    phonenumber_field
+"""
+INSTALLED_APPS += ["phonenumber_field"]
+"""
     Debug Toolbar
 """
 ENABLE_DEBUG_TOOLBAR = config('ENABLE_DEBUG_TOOLBAR', default=False, cast=bool)
