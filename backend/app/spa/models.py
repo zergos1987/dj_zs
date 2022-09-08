@@ -17,15 +17,17 @@ default_for_app_settings = {
 }
 
 class app_settings(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="spa_app_settings")
-    json_data = models.JSONField(null=True, blank=True, default=dict)
-    use_json_data_version = models.FloatField(null=False, blank=False, default=1.0, validators=[MinValueValidator(1.0), MaxValueValidator(99.99)])
-    created_at_datetime = models.DateTimeField(auto_now_add=True, blank=False)
-    updated_at_datetime = models.DateTimeField(auto_now=True, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="spa_app_settings")
+    json_data = models.JSONField(blank=True, null=True, default=dict, verbose_name=_('App json data'))
+    use_json_data_version = models.FloatField(blank=True, null=True, default=1.0, validators=[MinValueValidator(1.0), MaxValueValidator(99.99)], verbose_name=_('App json data version'))
+    created_at_datetime = models.DateTimeField(auto_now_add=True, blank=True, null=True, verbose_name=_('Record created at'))
+    updated_at_datetime = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name=_('Record updated at'))
 
     class Meta:
         # app_label helps django to recognize your db
         app_label = 'spa'
+        verbose_name = _('SPA app Settings')
+        verbose_name_plural = _('SPA app Settings')
         unique_together = ('user', 'json_data', 'use_json_data_version')
         ordering = ('-created_at_datetime',)
 
@@ -40,7 +42,7 @@ class app_settings(models.Model):
         if self.created_at_datetime: created_at_datetime = self.created_at_datetime.strftime("%m.%d.%Y, %H:%M:%S")
         updated_at_datetime = self.updated_at_datetime
         if self.updated_at_datetime: updated_at_datetime = self.updated_at_datetime.strftime("%m.%d.%Y, %H:%M:%S")
-        json_data = "spa_app_settings"
+        json_data = "api_app_settings"
         username = "anonymous"
         if self.user: username = self.user.username
 
