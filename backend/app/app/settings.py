@@ -40,6 +40,8 @@ if not SECRET_KEY and DEBUG:
 # ; - separator of hosts in list
 ALLOWED_HOSTS = [i for i in config('APP_ALLOWED_HOSTS').split(";") if i != '']
 
+INTERNAL_IPS = []
+
 
 # Application definition
 
@@ -215,6 +217,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #########################################################################
 ##################### EXTRA SETTINGS CONFIG BELOW #######################
 #########################################################################
+"""
+    Debug Toolbar
+"""
+ENABLE_DEBUG_TOOLBAR = config('ENABLE_DEBUG_TOOLBAR', default=False, cast=bool)
+if ENABLE_DEBUG_TOOLBAR:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
+    INTERNAL_IPS += [
+        "127.0.0.1",
+    ]
+
+    DEBUG_TOOLBAR_PANELS = [
+        "debug_toolbar.panels.timer.TimerPanel",
+        "debug_toolbar.panels.headers.HeadersPanel",
+        "debug_toolbar.panels.request.RequestPanel",
+        "debug_toolbar.panels.sql.SQLPanel",
+        "debug_toolbar.panels.profiling.ProfilingPanel",
+    ]
+    DEBUG_TOOLBAR_CONFIG = {"RESULTS_CACHE_SIZE": 100}
 """
     django_sslserver
 """
