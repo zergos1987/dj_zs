@@ -183,8 +183,10 @@ FIXTURE_DIRS = (
     BASE_DIR / 'fixtures',
 )
 
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+ENABLE_SSL = config('ENABLE_SSL', default=False, cast=bool)
+
+if ENABLE_SSL:
+    SECURE_SSL_REDIRECT = not DEBUG
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/spa/login/'
