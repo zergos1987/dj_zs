@@ -302,3 +302,7 @@ INSTALLED_APPS += drf_conf.INSTALLED_APPS
 REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
 if config('APP_USE_PLUGIN_DRF_JWT', default=False, cast=bool):
     pass
+"""
+    drf_yasg
+"""
+INSTALLED_APPS += ['drf_yasg']
