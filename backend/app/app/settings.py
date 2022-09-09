@@ -268,9 +268,16 @@ INSTALLED_APPS += ['csp']
 MIDDLEWARE += ['csp.middleware.CSPMiddleware']
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'")
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    "https://stackpath.bootstrapcdn.com",
+    "https://cdn.jsdelivr.net",
+    "https://code.jquery.com"
+)
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
 CSP_IMG_SRC = ("'self'",)
+CSP_INCLUDE_NONCE_IN = ["script-src"]
 """
     django_admin_rangefilter
 """
