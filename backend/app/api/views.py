@@ -1,7 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import ListModelMixin
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
+from rest_framework.permissions import IsAuthenticated
+
 from api.models import app_settings
+
+
 
 # Create your views here.
 
@@ -26,3 +34,17 @@ def index(request, *args, **kwargs):
     template = 'spa/index.html'
 
     return render(request, template, context)
+
+
+
+class UserProfile(GenericViewSet, ListModelMixin):
+    """
+    User Profile data
+    """
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        return Response(
+            data={"id": request.GET.get("id")},
+            status=HTTP_200_OK
+        )
