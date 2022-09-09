@@ -222,7 +222,7 @@ CORS_ORIGIN_WHITELIST = []
 if DEBUG:
     CORS_ORIGIN_WHITELIST += ['http://localhost:3000']
 else:
-    CORS_ORIGIN_WHITELIST += ['https://example-prod-react.com']
+    CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
