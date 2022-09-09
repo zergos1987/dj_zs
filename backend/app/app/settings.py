@@ -212,17 +212,6 @@ if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
 
-# Cors Settings
-CORS_ALLOW_CREDENTIALS = True
-
-# NOTE:
-# change 'https://example-prod-react.com' to your frontend domain
-CORS_ORIGIN_WHITELIST = []
-if DEBUG:
-    CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000']
-else:
-    CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -237,6 +226,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 """
 INSTALLED_APPS += ["corsheaders"]
 MIDDLEWARE.insert(3, 'corsheaders.middleware.CorsMiddleware')
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = []
+if DEBUG:
+    CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000']
+else:
+    CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
 """
     phonenumber_field
 """
