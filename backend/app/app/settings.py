@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -211,7 +212,18 @@ SITE_ID = 1
 if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
-    
+
+# Cors Settings
+CORS_ALLOW_CREDENTIALS = True
+
+# NOTE:
+# change 'https://example-prod-react.com' to your frontend domain
+CORS_ORIGIN_WHITELIST = []
+if DEBUG:
+    CORS_ORIGIN_WHITELIST += ['http://localhost:3000']
+else:
+    CORS_ORIGIN_WHITELIST += ['https://example-prod-react.com']
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
