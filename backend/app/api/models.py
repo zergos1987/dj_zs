@@ -61,7 +61,7 @@ class app_settings(models.Model):
 
 
 
-class user_extra_data(models.Model):
+class UserProfile(models.Model):
     GENDER = (
         ('M', _('Male')),
         ('F', _('Female')),
@@ -71,7 +71,7 @@ class user_extra_data(models.Model):
         ('en', _('English')),
     )
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, unique=True, related_name='UserProfile')
     first_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("First Name"))
     middle_name = models.CharField(blank=True, null=True, max_length=100, default="", verbose_name=_("Middle Name"))
     last_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("Last Name"))
@@ -87,23 +87,23 @@ class user_extra_data(models.Model):
     preferred_language = models.CharField(blank=True, null=True, choices=LANGUAGES, max_length=3, default='ENG')
     email_2 = models.EmailField(blank=True, null=True, max_length=233, unique=True, verbose_name=_('Email 2'))
     phone_number_2 = PhoneNumberField(blank=True, null=True, unique=True, db_index=True, verbose_name=_('Phone Number 2'))
-    profile_avatar = models.ImageField(blank=True, null=True, default='default_avatar.jpg', upload_to='user_extra_data_avatars', verbose_name=_('Avatar'))
+    profile_avatar = models.ImageField(blank=True, null=True, default='default_avatar.jpg', upload_to='UserProfile_avatars', verbose_name=_('Avatar'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True, verbose_name=_('Record created at'))
     updated_at_datetime = models.DateTimeField(blank=True, null=True, auto_now=True, verbose_name=_('Record updated at'))
 
 
     def save(self, *args, **kwargs):
-        anonymous_extra_data = user_extra_data.objects.filter(user__isnull=True).first()
-        if not self.user and anonymous_extra_data:
+        anonymous_profile = UserProfile.objects.filter(user__isnull=True).first()
+        if not self.user and anonymous_profile:
             return self
         else:
-            super(user_extra_data, self).save(*args, **kwargs)
+            super(UserProfile, self).save(*args, **kwargs)
 
     class Meta:
         # app_label helps django to recognize your db
         app_label = 'api'
-        verbose_name = _('User extra data')
-        verbose_name_plural = _('User extra data')
+        verbose_name = _('User profile')
+        verbose_name_plural = _('User profile')
         ordering = ('-created_at_datetime',)
 
     @property
@@ -146,18 +146,18 @@ class user_extra_data(models.Model):
         )
 
 @receiver(post_save, sender=User)
-def create_user_extra_data(sender, instance, created, **kwargs):
+def create_UserProfile(sender, instance, created, **kwargs):
     if created:
-        user_extra_data.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
-def save_user_extra_data(sender, instance, **kwargs):
-    instance.user_extra_data.save()
+def save_UserProfile(sender, instance, **kwargs):
+    instance.UserProfile.save()
 
 
-class user_extra_data_files(models.Model):
-    user_extra_data = models.ForeignKey(user_extra_data, on_delete=models.CASCADE, blank=True, null=True, related_name="user_extra_data_files")
-    user_files = models.FileField(blank=False, null=False, upload_to='user_extra_data_files',
+class user_UserProfileFiles(models.Model):
+    user_profile = models.ForeignKey(user_UserProfile, on_delete=models.CASCADE, blank=True, null=True, related_name="UserProfileFiles")
+    user_files = models.FileField(blank=False, null=False, upload_to='UserProfile_files',
                                   validators=[validator_file_size, FileExtensionValidator(allowed_extensions=["txt"])],
                                   help_text=_("Allowed size is 2 MB"), verbose_name=_('User files'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True, verbose_name=_('Record created at'))
@@ -166,8 +166,8 @@ class user_extra_data_files(models.Model):
     class Meta:
         # app_label helps django to recognize your db
         app_label = 'api'
-        verbose_name = _('User extra data files')
-        verbose_name_plural = _('User extra data files')
+        verbose_name = _('user_UserProfileFiles')
+        verbose_name_plural = _('user_UserProfileFiles')
         ordering = ('-created_at_datetime',)
 
     def __str__(self):
@@ -176,7 +176,7 @@ class user_extra_data_files(models.Model):
         updated_at_datetime = self.updated_at_datetime
         if self.updated_at_datetime: updated_at_datetime = self.updated_at_datetime.strftime("%m.%d.%Y, %H:%M:%S")
         username = "anonymous"
-        if self.user_extra_data: username = self.user_extra_data.user.username
+        if self.user_profile: username = self.user_profile.user.username
 
         return (
             '[ id ]: ' + str(self.id) + ' ' +
