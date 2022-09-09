@@ -35,7 +35,7 @@ DEBUG = config('APP_DEBUG', default=False, cast=bool)
 # SECURITY WARNING: keep the secret key used in production secret!
 if not SECRET_KEY and DEBUG:
     warnings.warn("SECRET_KEY not configured, using a random temporary key.")
-    SECRET_KEY = config('APP_SECRET_KEY', default=get_random_secret_key())
+    SECRET_KEY = get_random_secret_key()
 
 # ; - separator of hosts in list
 ALLOWED_HOSTS = [i for i in config('APP_ALLOWED_HOSTS').split(";") if i != '']
