@@ -1,6 +1,6 @@
 # dj_zs
 
-dj_zs - api template skeleton application based on Django for React/Vue frontend
+dj_zs - API template skeleton application based on Django for React/Vue frontend
 
 ## Features
 
