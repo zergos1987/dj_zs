@@ -72,21 +72,25 @@ class user_extra_data(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, unique=True)
-    first_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("First Name in English"))
-    last_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("Last Name in English"))
-    first_name_rus = models.CharField(blank=True, null=True, max_length=100, default="", verbose_name=_("First Name in Russian"))
-    middle_name_rus = models.CharField(blank=True, null=True, max_length=100, default="", verbose_name=_("Middle Name in Russian"))
-    last_name_rus = models.CharField(blank=True, null=True, max_length=100, default="", verbose_name=_("Last Name in Russian"))
+    first_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("First Name"))
+    middle_name = models.CharField(blank=True, null=True, max_length=100, default="", verbose_name=_("Middle Name"))
+    last_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("Last Name"))
     country = CountryField(blank=True, null=True, verbose_name=_("Country"))
-    city = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("City in English"))
+    zip_code = models.CharField(blank=True, null=True, max_length=20, verbose_name=_('Zip code'))
+    region = models.CharField(blank=True, null=True, max_length=200, verbose_name=_('Region'))
+    city = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("City"))
+    street = models.CharField(blank=True, null=True, max_length=250, verbose_name=_('Street'))
+    home_number = models.CharField(blank=True, null=True, max_length=250)
     gender = models.CharField(blank=True, null=True, max_length=20, choices=GENDER, verbose_name=_('Gender'))
     age = models.IntegerField(blank=True, null=True, default=1, validators=[MinValueValidator(1), MaxValueValidator(150)], verbose_name=_('Age'))
     birthday = models.DateField(blank=True, null=True, verbose_name=_('Birthday'))
     preferred_language = models.CharField(blank=True, null=True, choices=LANGUAGES, max_length=3, default='ENG')
-    phone_number = PhoneNumberField(blank=True, null=True, unique=True, verbose_name=_('Phone Number'))
-    avatar = models.ImageField(blank=True, null=True, default='default_avatar.jpg', upload_to='user_extra_data_avatars', verbose_name=_('Avatar'))
+    email_2 = models.EmailField(blank=True, null=True, max_length=233, unique=True, verbose_name=_('Email 2'))
+    phone_number = PhoneNumberField(blank=True, null=True, unique=True, db_index=True, verbose_name=_('Phone Number'))
+    profile_avatar = models.ImageField(blank=True, null=True, default='default_avatar.jpg', upload_to='user_extra_data_avatars', verbose_name=_('Avatar'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True, verbose_name=_('Record created at'))
     updated_at_datetime = models.DateTimeField(blank=True, null=True, auto_now=True, verbose_name=_('Record updated at'))
+
 
     def save(self, *args, **kwargs):
         anonymous_extra_data = user_extra_data.objects.filter(user__isnull=True).first()
@@ -114,7 +118,7 @@ class user_extra_data(models.Model):
 
     def get_full_name_rus(self):
         return ' '.join(
-            (self.first_name_rus, self.middle_name_rus, self.last_name_rus)
+            (self.first_name, self.middle_name, self.last_name)
         )
 
     def has_name_rus(self):
