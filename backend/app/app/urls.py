@@ -53,6 +53,6 @@ if settings.DEBUG:
             re_path(r"^__debug__/", include(debug_toolbar.urls))  # type: ignore
         ]
 
-    urlpatterns += static("/media/", document_root=settings.MEDIA_ROOT) + [
+    urlpatterns += static("/upload/", document_root=settings.MEDIA_ROOT) + [
         re_path(r"^static/(?P<path>.*)$", serve),
     ]
