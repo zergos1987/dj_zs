@@ -4,7 +4,7 @@ dj_zs - api template skeleton application based on Django for React/Vue frontend
 
 ## Features
 
-- Custom user Model extend base model
+- Custom-User-Model extend base model
 - Authentication with JWT Tokens
 
 ## Screenshots
