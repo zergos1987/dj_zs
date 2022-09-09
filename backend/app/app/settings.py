@@ -266,6 +266,11 @@ INSTALLED_APPS += ['django_filters']
 """
 INSTALLED_APPS += ['csp']
 MIDDLEWARE += ['csp.middleware.CSPMiddleware']
+CSP_DEFAULT_SRC = ("'none'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com')
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'")
+CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
+CSP_IMG_SRC = ("'self'",)
 """
     django_admin_rangefilter
 """
