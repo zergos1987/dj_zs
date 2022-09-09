@@ -59,7 +59,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -233,6 +232,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #########################################################################
 ##################### EXTRA SETTINGS CONFIG BELOW #######################
 #########################################################################
+"""
+    django-cors-headers
+"""
+INSTALLED_APPS += ["corsheaders"]
+MIDDLEWARE.insert(3, 'corsheaders.middleware.CorsMiddleware')
 """
     phonenumber_field
 """
