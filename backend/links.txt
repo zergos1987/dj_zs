@@ -9,10 +9,12 @@ Python:
   packages:
     https://pypi.org/simple/pyinstrument/
     https://www.lfd.uci.edu/~gohlke/pythonlibs/#cryptography
+   docs:
+    csp: https://www.stackhawk.com/blog/django-content-security-policy-guide-what-it-is-and-how-to-enable-it/
 Django:
   docs:
-    https://www.djangoproject.com/
-    https://www.django-rest-framework.org/
+    django: https://www.djangoproject.com/
+    drf: https://www.django-rest-framework.org/
   custom admin panel:
     https://github.com/sshwsfc/xadmin
     https://github.com/mtianyan/django-react-tyadmin
