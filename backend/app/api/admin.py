@@ -4,8 +4,8 @@ from rangefilter.filters import DateRangeFilter, DateTimeRangeFilter
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 from .models import (
         app_settings,
-        user_extra_data,
-        user_extra_data_files,
+        UserProfile,
+        UserProfileFiles,
 	)
 
 
@@ -49,5 +49,5 @@ class ModelAdmin_app_settings(ImportExportModelAdmin):
 
 admin.site.register(app_settings, ModelAdmin_app_settings)
 
-admin.site.register(user_extra_data)
-admin.site.register(user_extra_data_files)
+admin.site.register(UserProfile)
+admin.site.register(UserProfileFiles)
