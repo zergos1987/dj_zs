@@ -227,6 +227,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INSTALLED_APPS += ["corsheaders"]
 MIDDLEWARE.insert(3, 'corsheaders.middleware.CorsMiddleware')
 
+CORS_ORIGIN_ALLOW_ALL = False
+
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = []
