@@ -219,7 +219,7 @@ CORS_ALLOW_CREDENTIALS = True
 # change 'https://example-prod-react.com' to your frontend domain
 CORS_ORIGIN_WHITELIST = []
 if DEBUG:
-    CORS_ORIGIN_WHITELIST += ['http://localhost:3000']
+    CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000']
 else:
     CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
 
