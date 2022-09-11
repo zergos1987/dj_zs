@@ -1,3 +1,6 @@
+    https://github.com/kantegory/django-rest-auth-core/blob/lesson-1/django_auth_core/django_auth_core/settings.py
+    https://www.youtube.com/watch?v=r_eI5FLIPKw
+
 Random:
   https://github.com/Cambalab/metabase-compose
   https://github.com/anilkulkarni87/airflow-docker#superset
@@ -28,8 +31,6 @@ Django:
   drf + Swagger / OpenAPI:
     https://github.com/F4R4N/shop-django-rest-framework
   drf + JWT:
-    https://github.com/kantegory/django-rest-auth-core/blob/lesson-1/django_auth_core/django_auth_core/settings.py
-    https://www.youtube.com/watch?v=r_eI5FLIPKw
     https://github.com/draihal/
     https://github.com/syqu22/django-react-blog
     https://sushil-kamble.medium.com/django-rest-framework-react-authentication-workflow-2022-part-1-a21f22b3f358
