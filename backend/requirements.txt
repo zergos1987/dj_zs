@@ -8,6 +8,7 @@ diff-match-patch==20200713
 dj-database-url==1.0.0
 Django==4.1
 django-admin-rangefilter==0.8.7
+django-cleanup==6.0.0
 django-cors-headers==3.13.0
 django-countries==7.3.2
 django-csp==3.7
