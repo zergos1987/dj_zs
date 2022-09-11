@@ -222,6 +222,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ##################### EXTRA SETTINGS CONFIG BELOW #######################
 #########################################################################
 """
+    django_cleanup
+"""
+INSTALLED_APPS += ["django_cleanup.apps.CleanupConfig"]
+"""
     django-cors-headers
 """
 INSTALLED_APPS += ["corsheaders"]
