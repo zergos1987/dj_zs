@@ -1,5 +1,7 @@
     https://github.com/kantegory/django-rest-auth-core/blob/lesson-1/django_auth_core/django_auth_core/settings.py
     https://www.youtube.com/watch?v=r_eI5FLIPKw
+    
+    https://www.youtube.com/watch?v=c708Nf0cHrs&t=21630s
 
 Random:
   https://github.com/Cambalab/metabase-compose
