@@ -87,7 +87,7 @@ class UserProfile(models.Model):
     preferred_language = models.CharField(blank=True, null=True, choices=LANGUAGES, max_length=3, default='ENG')
     email_2 = models.EmailField(blank=True, null=True, max_length=233, unique=True, verbose_name=_('Email 2'))
     phone_number_2 = PhoneNumberField(blank=True, null=True, unique=True, db_index=True, verbose_name=_('Phone Number 2'))
-    profile_avatar = models.ImageField(blank=True, null=True, default='default_avatar.jpg', upload_to='UserProfile_avatars', verbose_name=_('Avatar'))
+    profile_avatar = models.ImageField(blank=True, null=True, default='upload/UserProfile_avatars/default_avatar.png', upload_to='UserProfile_avatars', verbose_name=_('Avatar'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True, verbose_name=_('Record created at'))
     updated_at_datetime = models.DateTimeField(blank=True, null=True, auto_now=True, verbose_name=_('Record updated at'))
 
@@ -155,8 +155,8 @@ def save_UserProfile(sender, instance, **kwargs):
     instance.UserProfile.save()
 
 
-class user_UserProfileFiles(models.Model):
-    user_profile = models.ForeignKey(user_UserProfile, on_delete=models.CASCADE, blank=True, null=True, related_name="UserProfileFiles")
+class UserProfileFiles(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True, null=True, related_name="UserProfileFiles")
     user_files = models.FileField(blank=False, null=False, upload_to='UserProfile_files',
                                   validators=[validator_file_size, FileExtensionValidator(allowed_extensions=["txt"])],
                                   help_text=_("Allowed size is 2 MB"), verbose_name=_('User files'))

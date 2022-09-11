@@ -165,8 +165,8 @@ USE_TZ = True
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/upload/'
+MEDIA_ROOT = BASE_DIR / 'upload'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
