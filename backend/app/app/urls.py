@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include, re_path
 from django.conf import settings
@@ -23,10 +22,6 @@ from django.conf import settings
 from django.contrib.staticfiles.views import serve
 
 
-
-admin.site.site_header = 'DJ ZS Admin'
-admin.site.index_title = 'Admin panel'
-admin.site.site_title = 'DJ ZS Admin'
 
 favicon_view = RedirectView.as_view(url='/static/assets/images/favicon.ico', permanent=True)
 
