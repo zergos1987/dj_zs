@@ -319,8 +319,6 @@ IMPORT_EXPORT_USE_TRANSACTIONS = dix_conf.IMPORT_EXPORT_USE_TRANSACTIONS
 from .extra_settings import django_rest_framework as drf_conf
 INSTALLED_APPS += drf_conf.INSTALLED_APPS
 REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
-if config('APP_USE_PLUGIN_DRF_JWT', default=False, cast=bool):
-    pass
 """
     drf_yasg
 """
