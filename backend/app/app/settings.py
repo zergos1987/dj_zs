@@ -274,6 +274,7 @@ INSTALLED_APPS += ['django_filters']
 INSTALLED_APPS += ['csp']
 MIDDLEWARE += ['csp.middleware.CSPMiddleware']
 if DEBUG:
+    CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'http: blob:')
     CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'")
     CSP_STYLE_SRC = (
         "'self'", 
@@ -284,6 +285,7 @@ if DEBUG:
     CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
     CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'http: data:', 'https: data:')
 else:
+    CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'https: blob:')
     CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'")
     CSP_STYLE_SRC = (
         "'self'", 
