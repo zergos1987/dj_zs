@@ -172,7 +172,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "app/assets",
+    BASE_DIR / "static/assets",
 ]
 
 
