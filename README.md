@@ -26,7 +26,7 @@ dj_zs - API template skeleton application based on Django for React/Vue frontend
 
   For `Win Users`
 
-        python -m venv venv && venv/bin/activate && pip install -r backend/requirements.txt && django-admin startproject app && cd app && django-admin startapp spa && django-admin startapp api && cd .. && xcopy "backend/app" "app" /c /i /e /h /y && xcopy "fronted/app" "app" /c /i /e /h /y && if not exist .env copy .env.example .env && python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py collectstatic --no-input && python app/manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@dj_zs.com', 'dj_zs12345')"
+        python -m venv venv && venv\Scripts\Activate && pip install -r backend/requirements.txt && django-admin startproject app && cd app && django-admin startapp spa && django-admin startapp api && cd .. && xcopy "backend/app" "app" /c /i /e /h /y && xcopy "fronted/app" "app" /c /i /e /h /y && if not exist .env copy .env.example .env && python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py collectstatic --no-input && python app/manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@dj_zs.com', 'dj_zs12345')"
         
 3. Run backend command (User: admin, password: dj_zs12345):
 
