@@ -300,8 +300,7 @@ else:
     CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
     CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'https: data:')
 CSP_INCLUDE_NONCE_IN = [
-    "script-src",
-    'script-src-elem'
+    "script-src"
 ]
 """
     django_admin_rangefilter
