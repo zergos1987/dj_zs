@@ -20,8 +20,13 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from django.conf import settings
 from django.contrib.staticfiles.views import serve
+from django.contrib import admin
 
 
+
+admin.site.site_header = 'DJ ZS Admin'
+admin.site.index_title = 'Admin panel'
+admin.site.site_title = 'DJ ZS Admin'
 
 favicon_view = RedirectView.as_view(url='/static/assets/images/favicon.ico', permanent=True)
 
