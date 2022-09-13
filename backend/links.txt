@@ -49,4 +49,5 @@ Django:
     https://github.com/c-v-ya/djact/tree/master/frontend
   translate i18:
     http://www.lexev.org/2013/multilanguage-site-django-without-redirects/
+    https://github.com/st4lk/django-solid-i18n-urls
   gitlab ci:
