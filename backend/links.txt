@@ -2,6 +2,8 @@
     https://www.youtube.com/watch?v=r_eI5FLIPKw
     https://www.youtube.com/watch?v=6jyl85q6yRs
     https://www.youtube.com/watch?v=c708Nf0cHrs&t=21630s
+    https://github.com/draihal/course-site
+    https://github.com/SimpleJWT/drf-SimpleJWT-Reac
 
 Random:
   https://github.com/Cambalab/metabase-compose
