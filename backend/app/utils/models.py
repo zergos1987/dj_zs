@@ -7,8 +7,8 @@ from django.utils.translation import ngettext
 def validator_file_size(value): # add this to some file where you can import it from
     megabytes = 2
     limit = megabytes * 1024 * 1024
-    err_msg = ngettext('File too large. Size should not exceed %(megabytes)d MB.') % { 'megabytes': megabytes, }
     if value.size > limit:
+        err_msg = _('File too large. Size should not exceed %(megabytes)d MB.') % {'megabytes': megabytes}
         raise ValidationError(err_msg)
 
 def validator_file_extension(value):
