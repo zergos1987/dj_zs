@@ -12,6 +12,7 @@ Random:
   https://stackoverflow.com/questions/72842060/how-to-make-react-i18next-accessing-json-file-in-django
   https://github.com/st4lk/django-solid-i18n-urls
   https://github.com/saleor/saleor/blob/main/saleor/settings.py
+  https://github.com/datamade/how-to/tree/main/django
 Python:
   packages:
     https://pypi.org/simple/pyinstrument/
