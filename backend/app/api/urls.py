@@ -60,8 +60,8 @@ urlpatterns = [
     re_path(fr'^{API_VERSION}/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path(f'{API_VERSION}/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path(f'{API_VERSION}/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path(f'{API_VERSION}/token/access/', TokenRefreshView.as_view(), name='token_get_access'),
-    path(f'{API_VERSION}/token/both/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path(f'{API_VERSION}/token/refresh/', TokenRefreshView.as_view(), name='token_get_access'),
+    path(f'{API_VERSION}/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('', lambda request: redirect(f'{API_VERSION}/', permanent=True)),
     re_path(fr'^{API_VERSION}/', include(router.urls))
 ]
