@@ -50,4 +50,5 @@ Django:
   translate i18:
     http://www.lexev.org/2013/multilanguage-site-django-without-redirects/
     https://github.com/st4lk/django-solid-i18n-urls
+    https://docs.djangoproject.com/en/dev/topics/i18n/translation/
   gitlab ci:
