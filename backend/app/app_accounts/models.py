@@ -75,7 +75,7 @@ class UserProfile(models.Model):
     email_2 = models.EmailField(blank=True, null=True, max_length=233, unique=True, verbose_name=_('Email 2'))
     phone_number_2 = PhoneNumberField(blank=True, null=True, unique=True, db_index=True,
                                       verbose_name=_('Phone Number 2'))
-    profile_avatar = models.ImageField(blank=True, null=True, default='upload/UserProfile_avatars/default_avatar.png',
+    profile_avatar = models.ImageField(blank=True, null=True, default='UserProfile_avatars/default_avatar.png',
                                        upload_to='UserProfile_avatars', verbose_name=_('Avatar'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True,
                                                verbose_name=_('Record created at'))
