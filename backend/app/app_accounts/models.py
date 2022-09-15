@@ -92,8 +92,8 @@ class UserProfile(models.Model):
     class Meta:
         # app_label helps django to recognize your db
         app_label = 'app_accounts'
-        verbose_name = _('User profile')
-        verbose_name_plural = _('User profile')
+        verbose_name = _('Users profile')
+        verbose_name_plural = _('Users profile')
         ordering = ('-created_at_datetime',)
 
     @property
@@ -160,8 +160,8 @@ class UserProfileFiles(models.Model):
     class Meta:
         # app_label helps django to recognize your db
         app_label = 'app_accounts'
-        verbose_name = _('user_UserProfileFiles')
-        verbose_name_plural = _('user_UserProfileFiles')
+        verbose_name = _('Users profile files')
+        verbose_name_plural = _('Users profile files')
         ordering = ('-created_at_datetime',)
 
     def __str__(self):
