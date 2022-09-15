@@ -2,13 +2,16 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from app_spa.models import app_settings
 
+
 # Create your views here.
+
+
 
 def index(request, *args, **kwargs):
     if not app_settings.objects.first():
         record = app_settings.objects.create()
         record.save()
-	
+
     if request.user.is_authenticated:
         user_settings = app_settings.objects.filter(user=request.user).first()
         if not user_settings:

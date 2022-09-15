@@ -179,7 +179,10 @@ STATICFILES_DIRS = [
 
 # Other
 AUTH_USER_MODEL = 'app_accounts.User'
-AUTHENTICATION_BACKENDS = ('app_accounts.backends.AuthBackend',)
+AUTHENTICATION_BACKENDS = (
+    # 'django.contrib.auth.backends.ModelBackend',
+    'app_accounts.backends.AuthBackend',
+)
 
 DATE_FORMAT = '%Y-%m-%d'
 TIME_FORMAT = '%H:%M:%S'
