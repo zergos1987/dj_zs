@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-from spa.models import app_settings
+from app_spa.models import app_settings
 
 # Create your views here.
 

@@ -18,7 +18,7 @@ from django.contrib.auth.models import (
     # User,
     Group,
 )
-from accounts.models import (
+from app_accounts.models import (
     User,
     UserProfile,
     UserProfileFiles,

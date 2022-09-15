@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-from accounts.models import (
+from app_accounts.models import (
     User,
 )
 
@@ -29,7 +29,7 @@ class app_settings(models.Model):
 
     class Meta:
         # app_label helps django to recognize your db
-        app_label = 'spa'
+        app_label = 'app_spa'
         verbose_name = _('SPA app Settings')
         verbose_name_plural = _('SPA app Settings')
         unique_together = ('user', 'json_data', 'use_json_data_version')

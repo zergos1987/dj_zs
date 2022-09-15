@@ -1,5 +1,5 @@
 from django.urls import path, re_path, include
-from api import views
+from app_api import views
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import permissions
@@ -10,7 +10,7 @@ from django.utils.safestring import mark_safe
 
 
 
-app_name = 'api'
+app_name = 'app_api'
 API_VERSION = 'v1'
 
 
