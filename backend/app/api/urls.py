@@ -6,13 +6,14 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.shortcuts import redirect
+from django.utils.safestring import mark_safe
+
 
 
 app_name = 'api'
-
-
-
 API_VERSION = 'v1'
+
+
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -25,8 +26,6 @@ schema_view = get_schema_view(
    public=False,
    permission_classes=(permissions.AllowAny,),
 )
-from django.utils.safestring import mark_safe
-
 
 class DJZJ_APIRootView(routers.APIRootView):
     """
@@ -43,7 +42,6 @@ class DJZJ_APIRootView(routers.APIRootView):
             return mark_safe(f"<p>{text}</p>")
         else:
             return text
-
 
 class ApiRouter(routers.DefaultRouter):
     APIRootView = DJZJ_APIRootView

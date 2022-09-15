@@ -1,14 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
+
+from accounts.models import (
+    User,
+)
 
 
 # Create your models here.
 default_for_app_settings = {
     "app": {
         "version": 1.0,
-        "name": "api"
+        "name": "spa"
     },
     "user": {
             "username": "anonymous"
@@ -42,7 +46,7 @@ class app_settings(models.Model):
         if self.created_at_datetime: created_at_datetime = self.created_at_datetime.strftime("%m.%d.%Y, %H:%M:%S")
         updated_at_datetime = self.updated_at_datetime
         if self.updated_at_datetime: updated_at_datetime = self.updated_at_datetime.strftime("%m.%d.%Y, %H:%M:%S")
-        json_data = "api_app_settings"
+        json_data = "spa_app_settings"
         username = "anonymous"
         if self.user: username = self.user.username
 

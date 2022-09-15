@@ -8,18 +8,18 @@ from rest_framework.status import HTTP_200_OK
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import viewsets
 
-from api.serializers import (
+from serializers.users import (
     UsersSerializer,
     GroupsSerializer,
     UsersProfileSerializer,
     UsersProfileFilesSerializer,
 )
 from django.contrib.auth.models import (
-    User,
+    # User,
     Group,
 )
-from api.models import (
-    app_settings,
+from accounts.models import (
+    User,
     UserProfile,
     UserProfileFiles,
 )
@@ -27,28 +27,6 @@ from api.models import (
 
 
 # Create your views here.
-
-def index(request, *args, **kwargs):
-    if not app_settings.objects.first():
-        record = app_settings.objects.create()
-        record.save()
-
-    if request.user.is_authenticated:
-        user_settings = app_settings.objects.filter(user=request.user).first()
-        if not user_settings:
-            record = app_settings.objects.create()
-            record.user = request.user
-            record.save()
-            user_settings = record
-    else:
-        user_settings = app_settings.objects.filter(user__isnull=True).first()
-
-    context = {
-        'app_settings': user_settings.json_data,
-    }
-    template = 'spa/index.html'
-
-    return render(request, template, context)
 
 
 

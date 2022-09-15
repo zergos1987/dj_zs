@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
 from django.contrib.auth.models import (
-    User,
+    # User,
     Group,
 )
-from api.models import (
-    app_settings,
+from accounts.models import (
+    User,
     UserProfile,
     UserProfileFiles,
 )
