@@ -178,6 +178,9 @@ STATICFILES_DIRS = [
 
 
 # Other
+AUTH_USER_MODEL = 'app_accounts.User'
+AUTHENTICATION_BACKENDS = ('app_accounts.backends.AuthBackend',)
+
 DATE_FORMAT = '%Y-%m-%d'
 TIME_FORMAT = '%H:%M:%S'
 DATETIME_FORMAT = DATE_FORMAT + 'T' + TIME_FORMAT
@@ -212,6 +215,15 @@ SITE_ID = 1
 if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
+
+#email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'no_reply@dj_zs.me'
+EMAIL_HOST_PASSWORD = 'test12345'
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'no_reply@dj_zs.me'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -325,3 +337,16 @@ REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
     drf_yasg
 """
 INSTALLED_APPS += ['drf_yasg']
+
+"""
+    djoser
+"""
+INSTALLED_APPS += ['djoser']
+DJOSER = {
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'TOKEN_MODEL': None,  # We use only JWT
+    'ACTIVATION_URL': 'auth/verify/{uid}/{token}/',
+}
