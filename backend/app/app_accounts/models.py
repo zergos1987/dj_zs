@@ -10,10 +10,10 @@ from utils.models import validator_file_size, validator_file_extension
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
-from users_app.managers import UserManager
+from app_accounts.managers import UserManager
 
 
 
