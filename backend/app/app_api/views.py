@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
