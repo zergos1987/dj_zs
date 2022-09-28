@@ -22,7 +22,7 @@ from django.conf import settings
 from django.contrib.staticfiles.views import serve
 from django.contrib import admin
 
-from app_api.views import UserLogoutAPIView
+from app_api.views import UserLoginAPIView, UserLogoutAPIView
 
 
 
@@ -35,6 +35,7 @@ favicon_view = RedirectView.as_view(url='/static/assets/images/favicon.ico', per
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('api/', permanent=True)),
+    path('accounts/login/', UserLoginAPIView.as_view(), name='login'),
     path('accounts/logout/', UserLogoutAPIView.as_view(), name='logout'),
     path('api/', include('app_api.urls')),
     re_path(r'^(?P<slug>[-\w\d]+)/api/', include('app_api.urls', namespace='user_app_api')),
