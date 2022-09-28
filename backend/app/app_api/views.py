@@ -80,12 +80,38 @@ class UserLoginAPIView(APIView):
             if '/admin/' in request.META.get('HTTP_REFERER'):
                 return redirect('/admin/login/')
         if request.user.is_authenticated:
-            return Response(data={"username": request.user.username, "email": request.user.email, "phone": request.user.phone})
+            if request.GET.get('next'):
+                return redirect(request.GET.get('next'))
+            return Response(data={
+                "Login Api": "Already authorized",
+                "username": request.user.username, 
+                "email": request.user.email, 
+                "phone": request.user.phone
+            })
         else:
-            return Response(data={"username": "username/email/phone", "password": "*****"})
+            return Response(data={
+                "Login Api": "Example below",
+                "username": "username/email/phone", 
+                "password": "*****"
+            })
     
     def post(self, request):
-        if not request.user.is_authenticated:
+        if request.user.is_authenticated:
+            return Response(data={
+                "Login Api": "Already authorized",
+                "id": request.user.id,
+                "username": request.user.username,
+                "email": request.user.email,
+                "phone": request.user.phone
+            })
+        
+        if not request.data:
+            return Response(data={
+                "Login Api": "Miss/invalid credentials",
+                "Login": "Username/password doesn't exists",
+            })
+        
+        if not request.user.is_authenticated and request.data:
             data = request.data
             username = data.get('username', None)
             password = data.get('password', None)
@@ -99,9 +125,19 @@ class UserLoginAPIView(APIView):
                     return Response(status=HTTP_404_NOT_FOUND)
             else:
                 return Response(status=HTTP_404_NOT_FOUND)
+            
         if request.GET.get('next'):
             return redirect(request.GET.get('next'))
-        return Response(status=HTTP_200_OK)
+        else:
+            return Response(data={
+                "Login Api": "Login success.",
+                "id": request.user.id,
+                "username": request.user.username,
+                "email": request.user.email,
+                "phone": request.user.phone
+            })
+        
+        return Response(status=HTTP_404_NOT_FOUND)
     
     
     
