@@ -79,7 +79,10 @@ class UserLoginAPIView(APIView):
         if hasattr(request.MET, 'HTTP_REFERER'):
             if '/admin/' in request.META.get('HTTP_REFERER'):
                 return redirect('/admin/login/')
-        return Response(data={"username": "username/email/phone", "password": "*****"})
+        if request.user.is_authenticated:
+            return Response(data={"username": request.user.username, "email": request.user.email, "phone": request.user.phone})
+        else:
+            return Response(data={"username": "username/email/phone", "password": "*****"})
     
     def post(self, request):
         if not request.user.is_authenticated:
