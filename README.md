@@ -26,7 +26,7 @@ dj_zs - API template skeleton application based on Django for React/Vue frontend
 
   For `Win Users`
 
-        python -m venv venv && venv\Scripts\Activate && pip install -r backend/requirements.txt --no-cache-dir --no-deps && django-admin startproject app && cd app && django-admin startapp app_spa && django-admin startapp app_api && django-admin startapp app_accounts && cd .. && xcopy "backend/app" "app" /c /i /e /h /y && xcopy "frontend/app" "app" /c /i /e /h /y && (if not exist .env copy .env.example .env) && python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py collectstatic --no-input && python app/manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser((username='admin', email='admin@dj_zs.com', password='dj_zs12345')"
+        python -m venv venv && venv\Scripts\Activate && pip install -r backend/requirements.txt --no-cache-dir --no-deps && django-admin startproject app && cd app && django-admin startapp app_spa && django-admin startapp app_api && django-admin startapp app_accounts && cd .. && xcopy "backend/app" "app" /c /i /e /h /y && xcopy "frontend/app" "app" /c /i /e /h /y && (if not exist .env copy .env.example .env) && python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py collectstatic --no-input && python app/manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser(username='admin', email='admin@dj_zs.com', password='dj_zs12345')"
         
 3. Run backend command (User: admin, password: dj_zs12345):
 
