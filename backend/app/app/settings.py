@@ -210,9 +210,9 @@ if ENABLE_SSL:
     SECURE_SSL_REDIRECT = not DEBUG
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/spa/login/'
-LOGOUT_REDIRECT_URL = '/spa/login/'
-LOGOUT_URL = '/api/logout/'
+LOGIN_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGOUT_URL = '/accounts/logout/'
     
 SITE_ID = 1
 
