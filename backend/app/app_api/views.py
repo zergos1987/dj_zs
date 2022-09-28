@@ -95,7 +95,6 @@ class UserLoginAPIView(APIView):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return Response(status=HTTP_200_OK)
                 else:
                     return Response(status=HTTP_404_NOT_FOUND)
             else:
