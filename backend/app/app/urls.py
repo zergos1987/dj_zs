@@ -37,6 +37,7 @@ urlpatterns = [
     path('', lambda request: redirect('api/', permanent=True)),
     path('accounts/logout/', UserLogoutAPIView.as_view(), name='logout'),
     path('api/', include('app_api.urls')),
+    re_path(r'^(?P<slug>[-\w\d]+)/api/', include('app_api.urls', namespace='user_app_api')
     path('spa/', include('app_spa.urls')),
     re_path(r'^favicon\.ico$', favicon_view),
 ]
