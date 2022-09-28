@@ -22,6 +22,8 @@ from django.conf import settings
 from django.contrib.staticfiles.views import serve
 from django.contrib import admin
 
+from app_api.views import UserLogoutAPIView
+
 
 
 admin.site.site_header = 'DJ ZS Admin'
@@ -33,6 +35,7 @@ favicon_view = RedirectView.as_view(url='/static/assets/images/favicon.ico', per
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('api/', permanent=True)),
+    path('accounts/logout/', UserLogoutAPIView.as_view(), name='logout'),
     path('api/', include('app_api.urls')),
     path('spa/', include('app_spa.urls')),
     re_path(r'^favicon\.ico$', favicon_view),

@@ -7,7 +7,7 @@ from django.core.management.utils import get_random_secret_key
 
 INSTALLED_APPS = [
     'rest_framework',
-    'rest_framework_simplejwt.token_blacklist',
+    # 'rest_framework_simplejwt.token_blacklist',
 ]
 
 """
@@ -37,11 +37,11 @@ REST_FRAMEWORK = {
     },
 }
 
-SIMPLE_JWT_SIGNING_KEY = config('SIMPLE_JWT_SIGNING_KEY')
-
-if not SIMPLE_JWT_SIGNING_KEY:
-    warnings.warn("SIMPLE_JWT_SIGNING_KEY not configured, using a random temporary key.")
-    SIMPLE_JWT_SIGNING_KEY = get_random_secret_key()
+# SIMPLE_JWT_SIGNING_KEY = config('SIMPLE_JWT_SIGNING_KEY')
+#
+# if not SIMPLE_JWT_SIGNING_KEY:
+#     warnings.warn("SIMPLE_JWT_SIGNING_KEY not configured, using a random temporary key.")
+#     SIMPLE_JWT_SIGNING_KEY = get_random_secret_key()
 
 SIMPLE_JWT = {
     # 'ACCESS_TOKEN_LIFETIME': timedelta(seconds=10),

@@ -212,6 +212,7 @@ if ENABLE_SSL:
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/spa/login/'
 LOGOUT_REDIRECT_URL = '/spa/login/'
+LOGOUT_URL = '/api/logout/'
     
 SITE_ID = 1
 
@@ -346,7 +347,19 @@ REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
     drf_yasg
 """
 INSTALLED_APPS += ['drf_yasg']
-
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': True,
+    'SECURITY_DEFINITIONS': {
+        'Basic': {
+            'type': 'basic'
+        },
+            'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+   }
+}
 """
     djoser
 """

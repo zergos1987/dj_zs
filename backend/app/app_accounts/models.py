@@ -24,9 +24,9 @@ from app_accounts.managers import UserManager
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_('username'), max_length=255, unique=True)
     email = models.EmailField(_('email address'),\
-        null=True, blank=True)
+        null=True, blank=True, unique=True)
     phone = models.CharField(_('phone number'), max_length=30,\
-        null=True, blank=True)
+        null=True, blank=True, unique=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=False)
     is_staff = models.BooleanField(_('staff'), default=False)
@@ -36,7 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = ['email', 'phone']
 
     class Meta:
         app_label = 'app_accounts'

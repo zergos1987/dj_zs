@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth import logout
 
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
@@ -7,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import viewsets
+from rest_framework.views import APIView
 
 from serializers.users import (
     UsersSerializer,
@@ -67,3 +69,18 @@ class GroupsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser]
     queryset = Group.objects.all().order_by('name')
     serializer_class = GroupsSerializer
+
+
+
+class UserLogoutAPIView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        if hasattr(request.user, 'auth_token'):
+            request.user.auth_token.delete()
+        logout(request)
+        if request.GET.get('next'):
+            print(request.GET.get('next'))
+            return redirect(request.GET.get('next'))
+        return Response(status=HTTP_200_OK)
