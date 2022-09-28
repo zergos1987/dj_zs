@@ -69,9 +69,17 @@ class GroupsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser]
     queryset = Group.objects.all().order_by('name')
     serializer_class = GroupsSerializer
+    
 
-
-
+    
+class UserLoginAPIView(APIView):
+    permission_classes = []
+    
+    def get(self, request):
+        return Response(status=HTTP_200_OK)
+    
+    
+    
 class UserLogoutAPIView(APIView):
 
     permission_classes = [IsAuthenticated]
