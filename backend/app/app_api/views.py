@@ -5,7 +5,7 @@ from django.contrib.auth import logout, login, authenticate
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
+from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import viewsets
 from rest_framework.views import APIView
@@ -83,7 +83,20 @@ class UserLoginAPIView(APIView):
     
     def post(self, request):
         if not request.user.is_authenticated:
-            pass
+            data = request.data
+            username = data.get('username', None)
+            password = data.get('password', None)
+            user = None
+            if username and password:
+                user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return Response(status=HTTP_200_OK)
+                else:
+                    return Response(status=HTTP_404_NOT_FOUND)
+            else:
+                return Response(status=HTTP_404_NOT_FOUND)
         if request.GET.get('next'):
             return redirect(request.GET.get('next'))
         return Response(status=HTTP_200_OK)
