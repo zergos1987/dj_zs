@@ -76,6 +76,16 @@ class UserLoginAPIView(APIView):
     permission_classes = []
     
     def get(self, request):
+        if hasattr(request.MET, 'HTTP_REFERER'):
+            if '/admin/' in request.META.get('HTTP_REFERER'):
+                return redirect('/admin/login/')
+        return Response(status=HTTP_200_OK)
+    
+    def post(self, request):
+        if not request.user.is_authenticated:
+            pass
+        if request.GET.get('next'):
+            return redirect(request.GET.get('next'))
         return Response(status=HTTP_200_OK)
     
     
