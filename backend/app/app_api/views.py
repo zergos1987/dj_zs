@@ -76,7 +76,7 @@ class UserLoginAPIView(APIView):
     permission_classes = []
     
     def get(self, request):
-        if hasattr(request.MET, 'HTTP_REFERER'):
+        if request.META.get('HTTP_REFERER', None) is not None:
             if '/admin/' in request.META.get('HTTP_REFERER'):
                 return redirect('/admin/login/')
         if request.user.is_authenticated:
