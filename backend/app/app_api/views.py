@@ -127,7 +127,10 @@ class UserLoginAPIView(APIView):
                 return Response(status=HTTP_404_NOT_FOUND)
             
         if request.GET.get('next'):
-            return redirect(request.GET.get('next'))
+            if '/swagger/' in request.GET.get('next'):
+                return redirect(request.GET.get('next')+'?format=openapi'
+            else:
+                return redirect(request.GET.get('next'))
         else:
             return Response(data={
                 "Login Api": "Login success.",
