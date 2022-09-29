@@ -122,9 +122,18 @@ class UserLoginAPIView(APIView):
                 if user.is_active:
                     login(request, user)
                 else:
-                    return Response(status=HTTP_404_NOT_FOUND)
+                    return Response(data={
+                        "Login Api": "User blocked",
+                        "id": request.user.id,
+                        "username": request.user.username,
+                        "email": request.user.email,
+                        "phone": request.user.phone
+                    })
             else:
-                return Response(status=HTTP_404_NOT_FOUND)
+                return Response(data={
+                    "Login Api": "Login failed",
+                    "Login": "Username/password incorrect"
+                })
             
         if request.GET.get('next'):
             if '/swagger/' in request.GET.get('next'):
