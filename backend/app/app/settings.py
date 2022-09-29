@@ -252,7 +252,17 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
 CORS_ORIGIN_WHITELIST = []
+
 if DEBUG:
     CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000']
 else:
