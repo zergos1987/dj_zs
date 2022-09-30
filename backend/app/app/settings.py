@@ -378,10 +378,18 @@ SWAGGER_SETTINGS = {
 """
 INSTALLED_APPS += ['djoser']
 DJOSER = {
+    'LOGIN_FIELD': 'username',
+    'TOKEN_MODEL': None, # needed for JWT
+    'PERMISSIONS': {
+        'user_delete': ['app_accounts.permissions.IsAdminUser']
+    },
+    # 'HIDE_USERS': If set to True, listing /users/ enpoint by normal user will return only that user’s
+    # profile in the list. Beside that, accessing /users/<id>/ endpoints by user without
+    # proper permission will result in HTTP 404 instead of HTTP 403.
+    'HIDE_USERS': True,
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SEND_ACTIVATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
-    'TOKEN_MODEL': None,  # We use only JWT
     'ACTIVATION_URL': 'auth/verify/{uid}/{token}/',
 }
