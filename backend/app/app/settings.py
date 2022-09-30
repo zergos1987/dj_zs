@@ -361,7 +361,7 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': True,
     'SHOW_REQUEST_HEADERS': True,
     'JSON_EDITOR': True,
-    'SUPPORTED_SUBMIT_METHODS': CORS_ALLOW_METHODS,
+    'SUPPORTED_SUBMIT_METHODS': [i.lower() for i in CORS_ALLOW_METHODS],
     'SECURITY_DEFINITIONS': {
         'Basic': {
             'type': 'basic'
