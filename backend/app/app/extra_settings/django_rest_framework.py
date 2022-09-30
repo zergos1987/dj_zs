@@ -44,8 +44,8 @@ REST_FRAMEWORK = {
 #     SIMPLE_JWT_SIGNING_KEY = get_random_secret_key()
 
 SIMPLE_JWT = {
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(seconds=10),
-    # 'REFRESH_TOKEN_LIFETIME': timedelta(seconds=30),
+    # 'ACCESS_TOKEN_LIFETIME': timedelta(seconds=3600),
+    # 'REFRESH_TOKEN_LIFETIME': timedelta(seconds=86000),
     # 'ROTATE_REFRESH_TOKENS': False,
     # 'BLACKLIST_AFTER_ROTATION': True,
     #
