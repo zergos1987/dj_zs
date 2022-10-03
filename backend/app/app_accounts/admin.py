@@ -46,7 +46,7 @@ class UserModelAdmin(UserAdmin, ImportExportModelAdmin):
 	    None,
 	    {
 	    	"classes": ("wide",),
-		"fields": ("username", "password1", "password2"),
+		"fields": ("username", "email", "phone", "password1", "password2", "is_active",),
 	    },
     	),
     )
