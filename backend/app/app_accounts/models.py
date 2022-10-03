@@ -22,7 +22,7 @@ from app_accounts.managers import UserManager
 
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin, TimestampMixin):
     username = models.CharField(
         _("username"),
         max_length=150,
