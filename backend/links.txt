@@ -56,3 +56,7 @@ Django:
     https://docs.djangoproject.com/en/dev/topics/i18n/translation/
     https://pypi.org/project/django-rosetta/
   gitlab ci:
+
+
+
+https://github.com/draihal/course-site
