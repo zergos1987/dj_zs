@@ -82,6 +82,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampMixin):
 
 class UserProfile(models.Model):
     GENDER = (
+        ('N', _('Not set')),
         ('M', _('Male')),
         ('F', _('Female')),
     )
