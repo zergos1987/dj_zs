@@ -356,40 +356,13 @@ REST_FRAMEWORK = drf_conf.REST_FRAMEWORK
 """
     drf_yasg
 """
-INSTALLED_APPS += ['drf_yasg']
-SWAGGER_SETTINGS = {
-    'USE_SESSION_AUTH': True,
-    'SHOW_REQUEST_HEADERS': True,
-    'JSON_EDITOR': True,
-    'SUPPORTED_SUBMIT_METHODS': [i.lower() for i in CORS_ALLOW_METHODS],
-    'SECURITY_DEFINITIONS': {
-        'Basic': {
-            'type': 'basic'
-        },
-        'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header'
-        }
-   }
-}
+from .extra_settings import drf_yasg as dy
+INSTALLED_APPS += dy.INSTALLED_APPS
+SWAGGER_SETTINGS = dy.SWAGGER_SETTINGS
+SWAGGER_SETTINGS['SUPPORTED_SUBMIT_METHODS'] = [i.lower() for i in CORS_ALLOW_METHODS]
 """
     djoser
 """
-INSTALLED_APPS += ['djoser']
-DJOSER = {
-    'LOGIN_FIELD': 'username',
-    'TOKEN_MODEL': None, # needed for JWT
-    'PERMISSIONS': {
-        'user_delete': ['app_accounts.permissions.IsAdminUser']
-    },
-    # 'HIDE_USERS': If set to True, listing /users/ enpoint by normal user will return only that user’s
-    # profile in the list. Beside that, accessing /users/<id>/ endpoints by user without
-    # proper permission will result in HTTP 404 instead of HTTP 403.
-    'HIDE_USERS': True,
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'SEND_ACTIVATION_EMAIL': True,
-    'SET_PASSWORD_RETYPE': True,
-    'PASSWORD_RESET_CONFIRM_RETYPE': True,
-    'ACTIVATION_URL': 'auth/verify/{uid}/{token}/',
-}
+from .extra_settings import djoser as dj
+INSTALLED_APPS += dj.INSTALLED_APPS
+DJOSER = dj.DJOSER
