@@ -15,7 +15,6 @@ from decouple import config
 import dj_database_url
 import os
 import warnings
-import shutil
 import sqlite3
 from django.utils.translation import gettext_lazy as _
 from django.core.management.utils import get_random_secret_key
@@ -103,7 +102,7 @@ if DEBUG:
         conn = sqlite3.connect(f'{BASE_DIR}/test_development_db.sqlite3')
         conn.close()
 else:
-    DATABASES['default'] = dj_database_url.parse(default=config('APP_DB'))
+    DATABASES['default'] = dj_database_url.parse(config('APP_DB'))
     DATABASES['test'] = dj_database_url.config(default=f'sqlite:///{BASE_DIR}/' + 'test_production_db.sqlite3')
     if not os.path.exists(f'{BASE_DIR}/test_production_db.sqlite3'):
         conn = None
@@ -119,6 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "OPTIONS": {"min_length": 5},
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -126,13 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-]
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-        "OPTIONS": {"min_length": 5},
-    }
 ]
 
 # Internationalization & Localization
@@ -155,11 +148,26 @@ LOCALE_PATHS = (
 
 FILE_CHARSET = 'utf-8-sig'
 
-
 # Time zones
 TIME_ZONE = 'Europe/Moscow'
 USE_TZ = True
 
+DATE_FORMAT = '%Y-%m-%d'
+TIME_FORMAT = '%H:%M:%S'
+
+DATETIME_FORMAT = DATE_FORMAT + 'T' + TIME_FORMAT
+DATETIME_INPUT_FORMATS = [
+    '%Y-%m-%dT%H:%M:%S',     # '2006-10-25T14:30:59'
+    '%Y-%m-%d %H:%M:%S',     # '2006-10-25 14:30:59'
+    '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
+    '%Y-%m-%d %H:%M',        # '2006-10-25 14:30'
+    '%m/%d/%Y %H:%M:%S',     # '10/25/2006 14:30:59'
+    '%m/%d/%Y %H:%M:%S.%f',  # '10/25/2006 14:30:59.000200'
+    '%m/%d/%Y %H:%M',        # '10/25/2006 14:30'
+    '%m/%d/%y %H:%M:%S',     # '10/25/06 14:30:59'
+    '%m/%d/%y %H:%M:%S.%f',  # '10/25/06 14:30:59.000200'
+    '%m/%d/%y %H:%M',        # '10/25/06 14:30'
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -176,29 +184,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "app/static/",
 ]
 
-
 # Other
 AUTH_USER_MODEL = 'app_accounts.User'
 AUTHENTICATION_BACKENDS = (
-    # 'django.contrib.auth.backends.ModelBackend',
     'app_accounts.backends.AuthBackend',
 )
-
-DATE_FORMAT = '%Y-%m-%d'
-TIME_FORMAT = '%H:%M:%S'
-DATETIME_FORMAT = DATE_FORMAT + 'T' + TIME_FORMAT
-DATETIME_INPUT_FORMATS = [
-    '%Y-%m-%dT%H:%M:%S',     # '2006-10-25T14:30:59'
-    '%Y-%m-%d %H:%M:%S',     # '2006-10-25 14:30:59'
-    '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
-    '%Y-%m-%d %H:%M',        # '2006-10-25 14:30'
-    '%m/%d/%Y %H:%M:%S',     # '10/25/2006 14:30:59'
-    '%m/%d/%Y %H:%M:%S.%f',  # '10/25/2006 14:30:59.000200'
-    '%m/%d/%Y %H:%M',        # '10/25/2006 14:30'
-    '%m/%d/%y %H:%M:%S',     # '10/25/06 14:30:59'
-    '%m/%d/%y %H:%M:%S.%f',  # '10/25/06 14:30:59.000200'
-    '%m/%d/%y %H:%M',        # '10/25/06 14:30'
-]
 
 FIXTURE_DIRS = (
     BASE_DIR / 'fixtures',
@@ -221,13 +211,14 @@ if DEBUG:
     mimetypes.add_type("application/javascript", ".js", True)
 
 #email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'no_reply@dj_zs.me'
-EMAIL_HOST_PASSWORD = 'test12345'
-EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'no_reply@dj_zs.me'
+EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend') #djcelery_email.backends.CeleryEmailBackend #django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST = config('EMAIL_HOST', default='smtp.yandex.ru')
+EMAIL_PORT = config('EMAIL_PORT', default=465, cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='no_reply@dj_zs.me')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='dj_zs12345')
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=True, cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='no_reply@dj_zs.me')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='dj_zs12345')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -249,7 +240,6 @@ INSTALLED_APPS += ["corsheaders"]
 MIDDLEWARE.insert(3, 'corsheaders.middleware.CorsMiddleware')
 
 CORS_ORIGIN_ALLOW_ALL = False
-
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
@@ -264,7 +254,7 @@ CORS_ALLOW_METHODS = [
 CORS_ORIGIN_WHITELIST = []
 
 if DEBUG:
-    CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000']
+    CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000', 'https://localhost:3000', 'https://localhost:8000']
 else:
     CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
 """
@@ -298,45 +288,15 @@ INSTALLED_APPS += ['django_filters']
 """
     django_csp
 """
-INSTALLED_APPS += ['csp']
-MIDDLEWARE += ['csp.middleware.CSPMiddleware']
+from .extra_settings import csp as c_s_p
+INSTALLED_APPS += c_s_p.INSTALLED_APPS
+MIDDLEWARE += c_s_p.MIDDLEWARE
 if DEBUG:
     CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'http: blob:', 'https: blob:',)
-    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'")
-    CSP_STYLE_SRC = (
-        "'self'", 
-        "'unsafe-inline'", 
-        'fonts.googleapis.com',
-    )
-    CSP_SCRIPT_SRC = (
-        "'self'",
-        "'unsafe-inline'",
-        "https://stackpath.bootstrapcdn.com",
-        "https://cdn.jsdelivr.net",
-        "https://code.jquery.com",
-    )
-    CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
     CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'http: data:',  'https: data:')
 else:
     CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'https: blob:',)
-    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'")
-    CSP_STYLE_SRC = (
-        "'self'", 
-        "'unsafe-inline'", 
-        'fonts.googleapis.com',
-    )
-    CSP_SCRIPT_SRC = (
-        "'self'", 
-        "'unsafe-inline'",
-        "https://stackpath.bootstrapcdn.com",
-        "https://cdn.jsdelivr.net",
-        "https://code.jquery.com",
-    )
-    CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
     CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'https: data:')
-CSP_INCLUDE_NONCE_IN = [
-    "script-src"
-]
 """
     django_admin_rangefilter
 """
