@@ -55,6 +55,7 @@ class UserModelAdmin(UserAdmin, ImportExportModelAdmin):
     search_fields = ("username", "email", "phone",)
     readonly_fields = ("last_login", "date_joined", "updated_at", "created_at",)
     ordering = ("date_joined",)
+    list_per_page = 10
     filter_horizontal = (
     	"groups",
 	"user_permissions",
