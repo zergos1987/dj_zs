@@ -326,3 +326,36 @@ SWAGGER_SETTINGS['SUPPORTED_SUBMIT_METHODS'] = [i.lower() for i in CORS_ALLOW_ME
 from .extra_settings import djoser as dj
 INSTALLED_APPS += dj.INSTALLED_APPS
 DJOSER = dj.DJOSER
+"""
+    celery
+"""
+CELERY_BROKER_URL = config('REDIS_URL', default='127.0.0.1:6379')
+CELERY_RESULT_BACKEND = config('REDIS_URL', default='127.0.0.1:6379')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+"""
+    django_celery_beat
+"""
+INSTALLED_APPS += ["django_celery_beat"]
+"""
+    django_celery_results
+"""
+INSTALLED_APPS += ["django_celery_results"]
+"""
+    djcelery_email
+"""
+INSTALLED_APPS += ["djcelery_email"]
+"""
+    sentry_sdk
+"""
+ENABLE_SENTRY = config('ENABLE_SENTRY', default=False, cast=bool)
+if ENABLE_SENTRY:
+    SENTRY_DSN = config('SENTRY_DSN')
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN, integrations=[DjangoIntegration()]
+    )
