@@ -3,7 +3,8 @@ from datetime import date
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import MaxValueValidator, MinValueValidator, FileExtensionValidator
+from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, FileExtensionValidator, validate_email, RegexValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from utils.models import validator_file_size, validator_file_extension
@@ -34,8 +35,22 @@ class User(AbstractBaseUser, PermissionsMixin):
             "unique": _("A user with that username already exists."),
         },
     )
-    email = models.EmailField(_('email address'), null=True, blank=True, unique=True)
-    phone = models.CharField(_('phone number'), max_length=30, null=True, blank=True, unique=True)
+    email = models.EmailField(_('email address'),
+                              max_length=255,
+                              null=True,
+                              blank=True,
+                              unique=True,
+                              validators=[validate_email]
+                              )
+    phone = models.CharField(_('phone number'),
+                             max_length=17,
+                             null=True,
+                             blank=True,
+                             unique=True,
+                             validators=[RegexValidator(
+                                 regex=r'^\+?1?\d{9,15}$',
+                                 message=_("Phone must be in format: '+19259999999'")
+                             )])
     is_active = models.BooleanField(
         _("active"), 
         default=False,
