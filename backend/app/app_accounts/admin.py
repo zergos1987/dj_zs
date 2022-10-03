@@ -39,7 +39,7 @@ class UserModelAdmin(UserAdmin, ImportExportModelAdmin):
 	    	),
 	    },
 	),
-	(_("Important dates"), {"fields": ("last_login", "date_joined")}),
+	(_("Important dates"), {"fields": ("last_login", "date_joined", "updated_at", "created_at",)}),
     )
     add_fieldsets = (
     	(
@@ -53,7 +53,7 @@ class UserModelAdmin(UserAdmin, ImportExportModelAdmin):
     list_display = ("username", "email", "phone", "is_staff",)
     list_filter = ("is_staff", "is_superuser", "is_active", "groups", ("date_joined", DateTimeRangeFilter),)
     search_fields = ("username", "email", "phone",)
-    readonly_fields = ("date_joined", "last_login",)
+    readonly_fields = ("last_login", "date_joined", "updated_at", "created_at",)
     ordering = ("date_joined",)
     filter_horizontal = (
     	"groups",
