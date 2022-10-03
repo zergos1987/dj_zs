@@ -93,9 +93,9 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, unique=True,
                                 related_name='UserProfile')
-    first_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("First Name"))
-    middle_name = models.CharField(blank=True, null=True, max_length=100, default="", verbose_name=_("Middle Name"))
-    last_name = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("Last Name"))
+    first_name = models.CharField(blank=True, null=True, max_length=127, verbose_name=_("First Name"))
+    middle_name = models.CharField(blank=True, null=True, max_length=127, default="", verbose_name=_("Middle Name"))
+    last_name = models.CharField(blank=True, null=True, max_length=127, verbose_name=_("Last Name"))
     country = CountryField(blank=True, null=True, verbose_name=_("Country"))
     zip_code = models.CharField(blank=True, null=True, max_length=20, verbose_name=_('Zip code'))
     region = models.CharField(blank=True, null=True, max_length=200, verbose_name=_('Region'))
