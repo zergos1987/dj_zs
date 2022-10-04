@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date
+import datetime
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
@@ -13,7 +13,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
-
+from utils.mixins import TimestampMixin
 from app_accounts.managers import UserManager
 
 
@@ -64,14 +64,19 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampMixin):
         default=False,
         help_text=_("Designates whether the user can log into this admin site."),
     )
-
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'phone']
-
+    
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        """
+        Sends on email to this User.
+        """
+        send_mail(subject, message, from_email, [self.email], **kwargs)
+        
     class Meta:
         app_label = 'app_accounts'
         verbose_name = _('user')
@@ -91,27 +96,27 @@ class UserProfile(models.Model):
         ('en', _('English')),
     )
 
+    profile_avatar = models.ImageField(blank=True, null=True, default='UserProfile_avatars/default_avatar.png',
+                                       upload_to='UserProfile_avatars', verbose_name=_('Avatar'))
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, unique=True,
                                 related_name='UserProfile')
+    preferred_language = models.CharField(blank=True, null=True, default='ru', choices=LANGUAGES, max_length=3)
+    email_2 = models.EmailField(blank=True, null=True, max_length=233, unique=True, verbose_name=_('Email 2'))
+    phone_number_2 = PhoneNumberField(blank=True, null=True, unique=True, db_index=True,
+                                      verbose_name=_('Phone Number 2'))
     first_name = models.CharField(blank=True, null=True, max_length=127, verbose_name=_("First Name"))
     middle_name = models.CharField(blank=True, null=True, max_length=127, default="", verbose_name=_("Middle Name"))
     last_name = models.CharField(blank=True, null=True, max_length=127, verbose_name=_("Last Name"))
-    country = CountryField(blank=True, null=True, verbose_name=_("Country"))
+    gender = models.CharField(blank=True, null=True, max_length=20, choices=GENDER, verbose_name=_('Gender'))
+    birthday = models.DateField(blank=True, null=True, verbose_name=_('Birthday'))
+    age = models.IntegerField(blank=True, null=True, default=1,
+                              validators=[MinValueValidator(1), MaxValueValidator(150)], verbose_name=_('Age'))
     zip_code = models.CharField(blank=True, null=True, max_length=20, verbose_name=_('Zip code'))
+    country = CountryField(blank=True, null=True, verbose_name=_("Country"))
     region = models.CharField(blank=True, null=True, max_length=200, verbose_name=_('Region'))
     city = models.CharField(blank=True, null=True, max_length=100, verbose_name=_("City"))
     street = models.CharField(blank=True, null=True, max_length=250, verbose_name=_('Street'))
     home_number = models.CharField(blank=True, null=True, max_length=250)
-    gender = models.CharField(blank=True, null=True, max_length=20, choices=GENDER, verbose_name=_('Gender'))
-    age = models.IntegerField(blank=True, null=True, default=1,
-                              validators=[MinValueValidator(1), MaxValueValidator(150)], verbose_name=_('Age'))
-    birthday = models.DateField(blank=True, null=True, verbose_name=_('Birthday'))
-    preferred_language = models.CharField(blank=True, null=True, choices=LANGUAGES, max_length=3, default='ENG')
-    email_2 = models.EmailField(blank=True, null=True, max_length=233, unique=True, verbose_name=_('Email 2'))
-    phone_number_2 = PhoneNumberField(blank=True, null=True, unique=True, db_index=True,
-                                      verbose_name=_('Phone Number 2'))
-    profile_avatar = models.ImageField(blank=True, null=True, default='UserProfile_avatars/default_avatar.png',
-                                       upload_to='UserProfile_avatars', verbose_name=_('Avatar'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True,
                                                verbose_name=_('Record created at'))
     updated_at_datetime = models.DateTimeField(blank=True, null=True, auto_now=True,
@@ -122,6 +127,8 @@ class UserProfile(models.Model):
         if not self.user and anonymous_profile:
             return self
         else:
+            if self.birthday and (not self.age or self.age == 1):
+                self.age = round((datetime.date.today() - self.birthday).days/365.25, 0)
             super(UserProfile, self).save(*args, **kwargs)
 
     class Meta:
@@ -132,7 +139,7 @@ class UserProfile(models.Model):
         ordering = ('-created_at_datetime',)
 
     @property
-    def email(self):
+    def get_email(self):
         return self.user.email
 
     def get_short_name(self):
@@ -149,7 +156,7 @@ class UserProfile(models.Model):
     def has_name_rus(self):
         return bool(self.get_full_name_rus().strip())
 
-    def age(self):
+    def get_age(self):
         today = date.today()
         born = self.birthday
         rest = 1 if (today.month, today.day) < (born.month, born.day) else 0
