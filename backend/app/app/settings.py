@@ -302,6 +302,10 @@ else:
 """
 INSTALLED_APPS += ['rangefilter']
 """
+    django_admin_listfilter_dropdown
+"""
+INSTALLED_APPS += ['django_admin_listfilter_dropdown']
+"""
     django_import_export
 """
 from .extra_settings import django_import_export as dix_conf
