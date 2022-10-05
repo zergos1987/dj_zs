@@ -251,9 +251,6 @@ CORS_ALLOW_METHODS = [
     'PUT',
 ]
 
-CSRF_COOKIE_NAME = "csrftoken"
-CSRF_COOKIE_HTTPONLY = False
-
 CORS_ALLOW_HEADERS = [
     # 'accept',
     # 'accept-encoding',
@@ -272,6 +269,10 @@ if DEBUG:
     CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000', 'https://localhost:3000', 'https://localhost:8000']
 else:
     CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
+
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_HTTPONLY = False
+CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
 """
     phonenumber_field
 """
