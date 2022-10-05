@@ -60,3 +60,7 @@ Django:
 
 
 https://github.com/draihal/course-site
+
+
+https://github.com/ramedina86/streamsync
+https://github.com/streamlit/streamlit
