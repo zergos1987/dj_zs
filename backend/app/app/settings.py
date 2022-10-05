@@ -251,15 +251,18 @@ CORS_ALLOW_METHODS = [
     'PUT',
 ]
 
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_HTTPONLY = False
+
 CORS_ALLOW_HEADERS = [
     # 'accept',
     # 'accept-encoding',
     # 'authorization',
-    # 'content-type',
+    "Content-Type",
     # 'dnt',
     # 'origin',
     # 'user-agent',
-    'x-csrftoken',
+    'X-CSRFToken',
     # 'x-requested-with',
 ]
 
