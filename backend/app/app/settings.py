@@ -307,6 +307,12 @@ INSTALLED_APPS += ['django_filters']
 from .extra_settings import csp as c_s_p
 INSTALLED_APPS += c_s_p.INSTALLED_APPS
 MIDDLEWARE += c_s_p.MIDDLEWARE
+
+CSP_DEFAULT_SRC = c_s_p.CSP_DEFAULT_SRC
+CSP_STYLE_SRC = c_s_p.CSP_STYLE_SRC
+CSP_SCRIPT_SRC = c_s_p.CSP_SCRIPT_SRC
+CSP_FONT_SRC = c_s_p.CSP_FONT_SRC
+CSP_INCLUDE_NONCE_IN = c_s_p.CSP_INCLUDE_NONCE_IN
 if DEBUG:
     CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'http: blob:', 'https: blob:',)
     CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'http: data:',  'https: data:')
