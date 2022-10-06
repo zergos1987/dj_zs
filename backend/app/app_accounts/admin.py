@@ -25,6 +25,7 @@ class UserResource(resources.ModelResource):
 	skip_unchanged = True
 	report_skipped = False
 	fields = ('id', 'username', 'email', 'phone',)
+	exclude = ()
 
 class UserModelAdmin(UserAdmin, ImportExportModelAdmin):
     fieldsets = (
@@ -114,7 +115,7 @@ class UserProfileResource(resources.ModelResource):
 	    "city",
 	    "street",
 	    "home_number",)
-	exclude = ('',)
+	exclude = ()
     
 class UserProfileAdmin(UserAdmin, ImportExportModelAdmin):
     fieldsets = (
