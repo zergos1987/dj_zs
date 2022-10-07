@@ -7,7 +7,7 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.validators import MaxValueValidator, MinValueValidator, FileExtensionValidator, validate_email, RegexValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from utils.model_validators import validator_file_size, validator_file_extension
+from utils.models_validators import validator_file_size, validator_file_extension
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
