@@ -313,6 +313,7 @@ CSP_STYLE_SRC = c_s_p.CSP_STYLE_SRC
 CSP_SCRIPT_SRC = c_s_p.CSP_SCRIPT_SRC
 CSP_FONT_SRC = c_s_p.CSP_FONT_SRC
 CSP_INCLUDE_NONCE_IN = c_s_p.CSP_INCLUDE_NONCE_IN
+CSP_EXCLUDE_URL_PREFIXES = c_s_p.CSP_EXCLUDE_URL_PREFIXES
 if DEBUG:
     CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'http: blob:', 'https: blob:',)
     CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'http: data:',  'https: data:',)
