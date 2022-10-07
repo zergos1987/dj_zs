@@ -315,10 +315,10 @@ CSP_FONT_SRC = c_s_p.CSP_FONT_SRC
 CSP_INCLUDE_NONCE_IN = c_s_p.CSP_INCLUDE_NONCE_IN
 if DEBUG:
     CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'http: blob:', 'https: blob:',)
-    CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'http: data:',  'https: data:')
+    CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'http: data:',  'https: data:',)
 else:
     CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'https: blob:',)
-    CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'https: data:')
+    CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'https: data:',)
 """
     django_admin_rangefilter
 """
