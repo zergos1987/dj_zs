@@ -207,7 +207,7 @@ class UserProfileFilesAdmin(ImportExportModelAdmin):
 	    "updated_at_datetime",
     )
     list_filter = (
-        ("user_profile", RelatedDropdownFilter),
+        ("user_profile__user", RelatedDropdownFilter),
         ("created_at_datetime", DateTimeRangeFilter),
         ("updated_at_datetime", DateTimeRangeFilter),
     )
