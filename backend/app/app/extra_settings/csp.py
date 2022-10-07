@@ -21,3 +21,5 @@ CSP_IMG_SRC = ("'self'", "'unsafe-inline'", 'http: data:',  'https: data:')
 CSP_INCLUDE_NONCE_IN = [
     "script-src"
 ]
+
+CSP_EXCLUDE_URL_PREFIXES = ('/admin',)
