@@ -8,6 +8,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator, FileExt
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from utils.models_validators import validator_file_size, validator_file_extension
+from utils.models_file_permissions import (
+    CreatePathFor_upload_users_username_files, 
+    CreatePathFor_upload_users_username_avatars,
+)
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
@@ -96,8 +100,8 @@ class UserProfile(models.Model):
         ('en', _('English')),
     )
 
-    profile_avatar = models.ImageField(blank=True, null=True, default='UserProfile_avatars/default_avatar.png',
-                                       upload_to='UserProfile_avatars', verbose_name=_('Avatar'))
+    profile_avatar = models.ImageField(blank=True, null=True, default='users/default_avatar.png',
+                                       upload_to=CreatePathFor_upload_users_username_avatars, verbose_name=_('Avatar'))
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, unique=True,
                                 related_name='UserProfile')
     preferred_language = models.CharField(blank=True, null=True, default='ru', choices=LANGUAGES, max_length=3)
@@ -191,7 +195,7 @@ def save_UserProfile(sender, instance, **kwargs):
 class UserProfileFiles(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True, null=True,
                                      related_name="UserProfileFiles")
-    user_files = models.FileField(blank=False, null=False, upload_to='UserProfile_files',
+    user_files = models.FileField(blank=False, null=False, upload_to=CreatePathFor_upload_users_username_files,
                                   validators=[validator_file_size, FileExtensionValidator(allowed_extensions=["txt"])],
                                   help_text=_("Allowed size is 2 MB"), verbose_name=_('User files'))
     created_at_datetime = models.DateTimeField(blank=True, null=True, auto_now_add=True,
