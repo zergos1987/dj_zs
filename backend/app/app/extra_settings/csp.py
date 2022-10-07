@@ -2,7 +2,7 @@ INSTALLED_APPS = ['csp']
 MIDDLEWARE = ['csp.middleware.CSPMiddleware']
 
 CSP_WORKER_SRC = ("'self'", "'unsafe-inline'", 'http: blob:', 'https: blob:',)
-CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'")
+CSP_DEFAULT_SRC = ("'none'", "'unsafe-inline'")
 CSP_STYLE_SRC = (
     "'self'",
     "'unsafe-inline'",
