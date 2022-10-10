@@ -181,15 +181,6 @@ class UserProfile(models.Model):
                 '[ updated_at_datetime ]: ' + str(updated_at_datetime)
         )
 
-@receiver(post_save, sender=User)
-def create_UserProfile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_UserProfile(sender, instance, **kwargs):
-    instance.UserProfile.save()
-
 
 
 class UserProfileFiles(models.Model):
