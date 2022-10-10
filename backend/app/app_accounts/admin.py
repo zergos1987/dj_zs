@@ -4,6 +4,7 @@ from import_export import resources
 from rangefilter.filters import DateRangeFilter, DateTimeRangeFilter
 from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter, ChoiceDropdownFilter
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
+from django.contrib.sessions.models import Session
 from .models import (
         User,
         UserProfile,
@@ -158,7 +159,7 @@ class UserProfileAdmin(UserAdmin, ImportExportModelAdmin):
         ("created_at_datetime", DateTimeRangeFilter),
         ("updated_at_datetime", DateTimeRangeFilter),
     )
-    search_fields = ("user__username", "email_2", "phone_number_2",)
+    search_fields = ("user__username", "email_2", "phone_number_2", "zip_code",)
     readonly_fields = ("created_at_datetime", "updated_at_datetime", get_profile_avatar,)
     ordering = ("-created_at_datetime", "-updated_at_datetime",)
     filter_horizontal = ()
@@ -232,7 +233,17 @@ class UserProfileFilesAdmin(ImportExportModelAdmin):
 	super(UserProfileFilesAdmin, self).save_model(request, obj, form, change)
     
     resource_class = UserProfileFilesResource
+
+
+
+class SessionAdmin(admin.ModelAdmin):
+    def _session_data(self, obj):
+        return obj.get_decoded()
+    list_display = ['session_key', '_session_data', 'expire_date']
 	    
+
+
 admin.site.register(User, UserModelAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(UserProfileFiles, UserProfileFilesAdmin)
+admin.site.register(Session, SessionAdmin)
