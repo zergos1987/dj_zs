@@ -25,15 +25,18 @@ def create_profile(sender, user, request, **kwargs):
         middle_name=data.get("middle_name", ""),
         last_name=data.get("last_name", "")
     )
-    
+
+
 @receiver(post_save, sender=User, dispatch_uid='post_save_UserProfile_create')
 def post_save_UserProfile_create(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 
+	
 @receiver(post_save, sender=User, dispatch_uid='post_save_UserProfile_save')
 def post_save_UserProfile_save(sender, instance, **kwargs):
     instance.UserProfile.save()
+
 
 @receiver(post_save, sender=Session, dispatch_uid='session_post_save')
 def post_save_Session(sender, instance, **kwargs):
