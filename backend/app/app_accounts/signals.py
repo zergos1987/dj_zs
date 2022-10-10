@@ -14,7 +14,7 @@ from .models import (
 
 
 
-@receiver(user_registered, dispatch_uid="create_userprofile")
+@receiver(user_registered, dispatch_uid="user_registered_userprofile_create")
 def create_profile(sender, user, request, **kwargs):
     """Add user profile on register"""
     data = request.data
@@ -26,13 +26,13 @@ def create_profile(sender, user, request, **kwargs):
         last_name=data.get("last_name", "")
     )
     
-@receiver(post_save, sender=User)
-def create_UserProfile(sender, instance, created, **kwargs):
+@receiver(post_save, sender=User, dispatch_uid='post_save_UserProfile_create')
+def post_save_UserProfile_create(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
-def save_UserProfile(sender, instance, **kwargs):
+@receiver(post_save, sender=User, dispatch_uid='post_save_UserProfile_save')
+def post_save_UserProfile_save(sender, instance, **kwargs):
     instance.UserProfile.save()
 
 @receiver(post_save, sender=Session, dispatch_uid='session_post_save')
