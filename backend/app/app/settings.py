@@ -287,6 +287,7 @@ else:
     CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
 
 CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = False
 CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
 """
