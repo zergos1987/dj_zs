@@ -1,8 +1,12 @@
 from django.dispatch import receiver
 from djoser.signals import user_registered
 from django.db.models.signals import post_save
-from app_accounts.models import UserProfile
 from django.contrib.sessions.models import Session
+from .models import (
+        User,
+        UserProfile,
+        UserProfileFiles,
+	)
 
 
 
