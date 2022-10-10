@@ -151,6 +151,7 @@ class UserProfileAdmin(UserAdmin, ImportExportModelAdmin):
     add_fieldsets = ()
     list_display = ("id", "get_username", "created_at_datetime", "updated_at_datetime",)
     list_filter = (
+        ("user", RelatedDropdownFilter),
         ("country", ChoiceDropdownFilter),
         ("region", DropdownFilter),
         ("city", DropdownFilter),
