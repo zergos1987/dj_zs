@@ -382,6 +382,25 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 """
+    django_user_agents
+"""
+INSTALLED_APPS += ["django_user_agents"]
+"""
+    django-geoip2-extras
+"""
+INSTALLED_APPS += ["geoip2_extras"]
+MIDDLEWARE.append("geoip2_extras.middleware.GeoIP2Middleware")
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    },
+    # required in order for IP addresses to be cached
+    "geoip2-extras": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    },
+}
+GEOIP_PATH = os.path.dirname(__file__)
+"""
     django_celery_beat
 """
 INSTALLED_APPS += ["django_celery_beat"]
