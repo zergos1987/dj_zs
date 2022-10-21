@@ -42,7 +42,11 @@
     {% endblock footer %}
     </body>
     <!-- APP JS -->
-    <script type="text/javascript"></script>
+
+    <script type="text/javascript">
+        const app_user = {% if user.is_authenticated %}{{ user.id }}{% else %}0{% endif %};
+        const app_url = window.location.href;
+    </script>
     <script type="application/javascript" src="{% static 'assets/js/jquery/jquery-3.6.1.min.js'%}"></script>
     <script type="application/javascript" src="{% static 'assets/js/base.js'%}"></script>
     {% block js %}{% endblock js %}
