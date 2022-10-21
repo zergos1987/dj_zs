@@ -34,6 +34,7 @@ favicon_view = RedirectView.as_view(url='/static/assets/images/favicon.ico', per
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # re_path(r'^admin/logout/$', UserLogoutAPIView.as_view(), name='admin_logout'),
     path('', lambda request: redirect('api/', permanent=True)),
     path('accounts/login/', UserLoginAPIView.as_view(), name='login'),
     path('accounts/logout/', UserLogoutAPIView.as_view(), name='logout'),
