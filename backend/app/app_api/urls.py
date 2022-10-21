@@ -55,8 +55,8 @@ router.register('users_groups', views.GroupsViewSet, basename="users_groups")
 
 urlpatterns = [
     path('', lambda request: redirect(f'{API_VERSION}/', permanent=True)),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
+    re_path(fr'^{API_VERSION}/auth/', include('djoser.urls')),
+    re_path(fr'^{API_VERSION}/auth/', include('djoser.urls.jwt')),
     re_path(fr'^{API_VERSION}/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path(f'{API_VERSION}/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path(f'{API_VERSION}/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
