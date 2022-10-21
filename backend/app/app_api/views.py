@@ -16,6 +16,9 @@ from serializers.users import (
     UsersProfileSerializer,
     UsersProfileFilesSerializer,
 )
+# from serializers.accounts_login import (
+#     LoginSerializer,
+# )
 from django.contrib.auth.models import (
     # User,
     Group,
@@ -24,7 +27,9 @@ from app_accounts.models import (
     User,
     UserProfile,
     UserProfileFiles,
+    ConnectionRequests,
 )
+from django.utils.translation import gettext_lazy as _
 
 
 
@@ -148,8 +153,6 @@ class UserLoginAPIView(APIView):
                 "email": request.user.email,
                 "phone": request.user.phone
             })
-        
-        return Response(status=HTTP_404_NOT_FOUND)
     
     
     
@@ -160,8 +163,17 @@ class UserLogoutAPIView(APIView):
     def get(self, request):
         if hasattr(request.user, 'auth_token'):
             request.user.auth_token.delete()
+
+        # get current request id from authorized user
+        request_unique_id_parent = request.session.get("request_unique_id_parent")
+
         logout(request)
+
+        # set current request id from authorized user to logout anonymous request id
+        if request_unique_id_parent:
+            request.session["request_unique_id_parent"] = request_unique_id_parent
+            request.session.save()
+
         if request.GET.get('next'):
-            print(request.GET.get('next'))
             return redirect(request.GET.get('next'))
         return Response(status=HTTP_200_OK)
