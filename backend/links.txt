@@ -64,3 +64,4 @@ https://github.com/draihal/course-site
 
 https://github.com/ramedina86/streamsync
 https://github.com/streamlit/streamlit
+pandas cashing django - https://stackoverflow.com/questions/54741779/repeated-action-on-pandas-dataframe-in-django-rest-framework
