@@ -66,3 +66,5 @@ https://github.com/ramedina86/streamsync
 https://github.com/streamlit/streamlit
 pandas cashing django - https://stackoverflow.com/questions/54741779/repeated-action-on-pandas-dataframe-in-django-rest-framework
 pandas to django / dataframe to model and viceversa - https://github.com/OrigamiPaperCrane/django-frames
+json object - https://github.com/jmespath/jmespath.py
+json object - https://github.com/gullerya/object-observer
