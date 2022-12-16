@@ -73,7 +73,7 @@ MIDDLEWARE = [
 ############
 
 # Age of cookie, in seconds (default: 2 weeks).
-SESSION_COOKIE_AGE = 60 * 60 * 1 # 60 * 60 * 24 * 7 * 2
+SESSION_COOKIE_AGE = 60 * 60 * 24 # 60 * 60 * 24 * 7 * 2
 # Whether the session cookie should be secure (https:// only).
 SESSION_COOKIE_SECURE = False
 # Whether to set the flag restricting cookie leaks on cross-site requests.
@@ -234,8 +234,6 @@ EMAIL_PORT = config('EMAIL_PORT', default=465, cast=int)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='no_reply@dj_zs.me')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='dj_zs12345')
 EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=True, cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='no_reply@dj_zs.me')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='dj_zs12345')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -256,7 +254,14 @@ INSTALLED_APPS += ["django_cleanup.apps.CleanupConfig"]
 INSTALLED_APPS += ["corsheaders"]
 MIDDLEWARE.insert(3, 'corsheaders.middleware.CorsMiddleware')
 
+CORS_ORIGIN_WHITELIST = []
+if DEBUG:
+    CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000', 'https://localhost:3000', 'https://localhost:8000']
+else:
+    CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
+
 CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOWED_ORIGINS = CORS_ORIGIN_WHITELIST
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
@@ -279,13 +284,6 @@ CORS_ALLOW_HEADERS = [
     'X-CSRFToken',
     # 'x-requested-with',
 ]
-
-CORS_ORIGIN_WHITELIST = []
-
-if DEBUG:
-    CORS_ORIGIN_WHITELIST += ['http://localhost:3000', 'http://localhost:8000', 'https://localhost:3000', 'https://localhost:8000']
-else:
-    CORS_ORIGIN_WHITELIST += [i for i in config('CORS_ORIGIN_WHITELIST').split(";") if i != '']
 
 CSRF_COOKIE_NAME = "csrftoken"
 CSRF_COOKIE_AGE =  60 * 60 * 24 * 7 * 52
