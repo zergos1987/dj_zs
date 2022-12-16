@@ -402,7 +402,47 @@ class ConnectionRequestsAdmin(ImportExportModelAdmin):
 
 
 class ConnectionRequestsUrlsAndPermissionsAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {"fields": (
+            "url",
+            "url_include_nested_urls",
+            "access_via_users",
+            "users_include_anonymous",
+            "access_via_roles",
+        )}),
+        (_("DRF Api actions"), {"fields": (
+            "api_actions_can_list",
+            "api_actions_can_create",
+            "api_actions_can_retrieve",
+            "api_actions_can_update",
+            "api_actions_can_partial_update",
+            "api_actions_can_destroy",
+        )}),
+        (_("Important dates"), {"fields": (
+            "created_at_datetime",
+            "updated_at_datetime",
+        )}),
+    )
     list_display = ['id', 'url', 'url_include_nested_urls', 'users_count', 'roles_list']
+    list_filter = (
+        "users_include_anonymous",
+        "url_include_nested_urls",
+        "api_actions_can_list",
+        "api_actions_can_create",
+        "api_actions_can_retrieve",
+        "api_actions_can_update",
+        "api_actions_can_partial_update",
+        "api_actions_can_destroy",
+        ('created_at_datetime', DateTimeRangeFilter),
+        ('updated_at_datetime', DateTimeRangeFilter),
+    )
+    search_fields = (
+            "url",
+    )
+    readonly_fields = ("created_at_datetime", "updated_at_datetime", )
+    ordering = ("url",)
+    filter_horizontal = ('access_via_users', 'access_via_roles',)
+    list_per_page = 10
 
     def users_count(self, obj):
         users_count = ""
@@ -423,7 +463,6 @@ class ConnectionRequestsUrlsAndPermissionsAdmin(admin.ModelAdmin):
         return roles_list
     roles_list.short_description = _("roles list")
 
-    filter_horizontal = ('access_via_users', 'access_via_roles',)
 
 
 
