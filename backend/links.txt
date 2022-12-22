@@ -136,9 +136,161 @@ https://github.com/react-grid-layout/react-grid-layout/blob/master/test/examples
 https://github.com/yankouskia/iframy
     
     
+# user and access
+components.ru/roles/(list|edit|delete|disable-enable)/
+components.ru/roles/id/(edit|save|delete|disable-enable)/
+components.ru/users/(list|edit|delete|disable-enable)/
+components.ru/users/auth/ # username/email/phone and psw or token
+components.ru/users/(id|username|email|phone)/get_auth_token/ # refresh/access tokens
+
+# create new component and access
+components.ru/c/(admin)/(list|edit|delete|disable-enable)/
+components.ru/c/(admin)/create/(save|cancel)/
+components.ru/c/(admin)/create/(save|cancel)/
+components.ru/c/(admin)/(id|unique_name)/(edit|save|delete|disable-enable)/
+components.ru/c/(admin)/(id|unique_name)/users/(list|edit|delete|disable-enable)/
+	instance_copy_max_count
+
+# create users new component copy and access
+components.ru/c/(auth_token|admin)/(list|edit|delete|disable-enable)/
+components.ru/c/(auth_token|admin)/(id|unique_name)/create_user_c/(save|cancel)/
+components.ru/c/(auth_token|admin)/(id|unique_name)/(id|unique_user_c_name)/(edit|save|delete)/
+	set_default_data
+	set_py_src
+components.ru/c/(auth_token|admin)/(id|unique_name)/(id|unique_user_c_name)/(id|unique_user_c_copy_name)/(edit|save|delete)/
+	auto_create_if_not_exists
+components.ru/c/(auth_token|admin)/(id|unique_name)/(id|unique_user_c_name)/(id|unique_user_c_copy_name)/url/
+	get_html_iframe
+components.ru/c/(unique_user_c_copy_name)/url/
+	get_html_iframe
+components.ru/c/(auth_token|admin)/(id|unique_name)/(id|unique_user_c_name)/(id|unique_user_c_copy_name)/data/
+	get_json_data
+components.ru/c/(unique_user_c_copy_name)/data/
+	get_json_data
     
     
+
+components.ru/c/(id|unique_name)/users/(id|username|email|phone)/(edit|save|delete|disable-enable)/ 
+
+components.ru/c/(id|unique_name)/copy/(auth_tokens|admin)/(list|edit|delete)/
+
+
+components.ru/c/(id|unique_name)/(edit|save|delete)/
+components.ru/c/(id|unique_name)/user_tokens_list/(disable-enable|edit|delete)/
+components.ru/c/(id|unique_name)/user_tokens/(token_access|token_refresh)/(disable-enable|edit|save|delete)/
+components.ru/c/(id|unique_name)/user_tokens/instance_copy_max_count/(0-unlimited)/
+
+components.ru/[c1]/tokens/ # unique:(user_id + bi_name) + access_token/refresh_token
+components.ru/[c1]/(access_token(Q42dQ2edfsdf)|admin)/(instance_copy_id|"")/url/?refresh_token=Add@eaas23
+components.ru/[c1]/(access_token(Q42dQ2edfsdf)|admin)/(instance_copy_id|"")/create/
+components.ru/[c1]/(access_token(Q42dQ2edfsdf)|admin)/(instance_copy_id|"")/edit/
+components.ru/[c1]/(access_token(Q42dQ2edfsdf)|admin)/(instance_copy_id|"")/api/init_data/
+components.ru/[c1]/(access_token(Q42dQ2edfsdf)|admin)/(instance_copy_id|"")/api/data/
+components.ru/[c1]/(access_token(Q42dQ2edfsdf)|admin)/(instance_copy_id|"")/api/py_scr/
+
+site1.ru/page1/
+	iframe_name1 = ""
+	iframe_state_tree = {"name": "c1", "d": [], "name": "c2", "d": [], "name": "c3", "d": [], "name": "c*", "d": []}
+site1.ru/page2/
+	iframe_state_tree = {"name": "c22", "d": [], "name": "c8", "d": []}
+site1.ru/page*/
+	iframe_state_tree = {"name": "c1", "d": [], "name": "c2", "d": [], "name": "c33", "d": []}
     
+# possible frames: custom, st, pn, m-base, s-set, p-b, airflow
+# /../app_frame[id/name](edit/delete)/../ == /../ui/../
+
+
+# 1) user request url: app/app_frame[id/name]/page/
+# 2) django views_wrapper call view.py from dir app/app_frame[id/name]/page/view.py
+# 3) 
+	# load url
+	# if url exists:
+		# if request url include /app/ui/:
+			# if view.py exists:
+				# load user and roles
+				# if user and roles access valid to request url:
+					# load default_template.html
+					# make ui access_token = current_url, user /// if in rendered ui/../view.py update access to self from db by user from token
+					# add to default_template.html - iframe object with arguments: access_token 
+					# load iframe by ui wrapper ../app_frame[id/name]/.. with url link parameter app/app_frame[id/name]/page/view.py with arguments: current_url, user
+						# if user is admin:
+							# ui wrapper load script from url link parameter app/app_frame[id/name]/view.py with arguments: current_url, user, create/edit page
+								# load page
+								# load code viewer
+								# load code output promt
+								# matrix: url-role / url-user
+								# On save:
+									# create url name
+									# create folder structure
+									# create scr - view.py
+						# else:
+							# ui wrapper load script from url link parameter app/app_frame[id/name]/view.py with arguments: current_url, user
+								# load page
+				# else:
+					# redirect to /app/ui/access_denied/view.py
+			# else:
+				# redirect to /app/ui/not_exists/view.py
+		# if request url include /app/api/:
+			# redirect to django_view url
+		# else:
+			# redirect to /app/ui/view.py 
+	# else:
+		# if user is admin:
+			# load default_template.html
+			# make ui access_token = current_url, user /// if in rendered ui/../view.py update access to self from db by user from token
+			# add to default_template.html - iframe object with arguments: access_token
+			# load iframe by ui wrapper ../app_frame[id/name]/.. with url link parameter app/app_frame[id/name]/page/view.py
+				# ui wrapper load script from url link parameter app/app_frame[id/name]/view.py with arguments: current_url, user, create/edit page
+					# load page
+					# load code viewer
+					# load code output promt
+					# matrix: url-role / url-user
+					# On save:
+						# create url name
+						# create folder structure
+						# create scr - view.py 
+		# else:
+			# redirect to /app/ui/not_exists/view.py with arguments: current_url, user
+   
+
+
+link_1: /app/api/user/me/ 
+		/app/api/user/(list/edit/add/delete)/
+# /api/user/../ = other default endpoints
+# udapte users in all frames
+link_2: /app/api/roles/ 
+		/app/api/roles/(list/edit/add/delete)/
+# udapte roles in all frames
+link_3: /app/api/urls/[id/name](edit/delete)/
+		/app/api/urls/(list/edit/add/delete)/
+link_4: /app/api/urls_access/[id/name](edit/delete)/
+		/app/api/urls_access/(list/edit/add/delete)/
+# checkboxes = urls-users / urls-roles
+link_5: /app/api/app_frame/[id/name](edit/delete)/
+		/app/api/app_frame/(list/edit/add/delete)/
+# In /api/app_frame/[id/name](edit/delete)/ set = token access/refresh
+link_6: /app/api/app/[id/name](edit/delete)/
+		/app/api/app/(list/edit/add/delete)/
+# In /api/app/[id/name](edit/delete)/ set = urls, roles, ui frame, other props
+# url_type: (frame/py_scr/django)
+link_7: 
+link_8: /app/app_frame[id/name](edit/delete)/schedule_tasks/[id/name](edit/delete)/
+		/app/app_frame[id/name](edit/delete)/schedule_tasks/(list/edit/add/delete)/
+# ../schedule_tasks/.. = py_scr/app_frames/(st/pn/other/custom)/schedule_tasks/view.py
+# ../schedule_tasks/[id/name](edit/delete)/ = py_scr/app_frames/(st/pn/other/custom)/datasets/etl/name.py + code_viewer + execute results
+link_9: /app/app_frame[id/name](edit/delete)/datasets/[id/name](edit/delete)/
+		/app/app_frame[id/name](edit/delete)/datasets/(list/edit/add/delete)/
+# In /app/app_frame[id/name](edit/delete)/datasets/[id/name](edit/delete)/ set = etl_scr.py, sql_query.py, pd_query.py, api_query.py, other props
+# py_scr/app_frames/(st/pn/other/custom)/datasets/view.py + [view_name.py, etl_name.py, sql_query_name.py, pd_query_name.py, api_query_name.py]
+link_10: /app/app_frame[id/name](edit/delete)/dashboards/app_frame[id/name](edit/delete)/[id/name](edit/delete)/
+# /app/app_frame[id/name](edit/delete)/dashboards/app_frame[id/name](edit/delete)/[id/name](edit/delete)/ = /app/ui/dashboards/st/test_21/
+# frame "st"(ui) call object named "test_21" in frame "mb"(dashboards) in category name "dashboards" +
+#    app_frame access token with include expired date and user who have role access for this url-object in "/api/app/" role-url matrix
+# py_scr/app_frames/(st/pn/other/custom)/dashboards/view.py + load frame + init param [id/name](edit/delete) + init token
+link_11: 
+
+
+
     https://github.com/kantegory/django-rest-auth-core/blob/lesson-1/django_auth_core/django_auth_core/settings.py
     https://www.youtube.com/watch?v=r_eI5FLIPKw
     https://www.youtube.com/watch?v=6jyl85q6yRs
