@@ -64,6 +64,6 @@ tablib==3.2.1
 typing_extensions==4.3.0
 uritemplate==4.1.1
 urllib3==1.26.12
-wheel==0.37.1
+wheel==0.38.1
 xlrd==2.0.1
 xlwt==1.3.0
